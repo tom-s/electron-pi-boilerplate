@@ -1,0 +1,19 @@
+{
+  "name": "electron",
+  "version": "0.1.0",
+  "description": "Electron app",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "arm": "build/arm/electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tom-s",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^0.30.0"
+  },
+  "dependencies": {
+    "electron-rebuild": "^0.2.5"
+  }
+}
