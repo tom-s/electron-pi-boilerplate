@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --devtool eval --progress --colors",
-    "electron": "electron .",
-    "dev-electron": "npm run dev && npm run electron",
+    "electron": "npm run build && electron .",
     "build": "webpack",
     "arm": "build/arm/electron .",
     "test": "echo \"Error: no test specified\" && exit 1"

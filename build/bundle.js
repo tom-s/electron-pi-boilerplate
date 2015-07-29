@@ -93,7 +93,7 @@
 
 	__webpack_require__(20);
 
-	_react2['default'].render(_react2['default'].createElement(_homeJsx2['default'], { name: "Thomas" }), document.getElementById('main'));
+	_react2['default'].render(_react2['default'].createElement(_homeJsx2['default'], { name: "Michelss" }), document.getElementById('main'));
 
 /***/ },
 /* 3 */

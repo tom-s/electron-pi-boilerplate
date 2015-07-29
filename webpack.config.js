@@ -4,6 +4,7 @@ var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 
 var config = {
+    target: 'atom',
     entry: path.resolve(__dirname, 'js/app.jsx'),
     output: {
         path: path.resolve(__dirname, 'build'),
