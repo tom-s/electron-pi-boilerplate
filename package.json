@@ -4,10 +4,9 @@
   "description": "Electron app",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --devtool eval --progress --colors",
-    "electron": "npm run build && electron .",
-    "build": "webpack",
-    "arm": "build/arm/electron .",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
+    "electron": "electron .",
+    "electron-arm": "electron/arm/electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "tom-s",
@@ -16,11 +15,11 @@
     "babel-core": "^5.8.3",
     "babel-loader": "^5.3.2",
     "babel-runtime": "^5.8.3",
+    "bootstrap-sass": "^3.3.5",
     "css-loader": "^0.15.5",
-    "electron-prebuilt": "^0.30.1",
     "file-loader": "^0.8.4",
+    "lodash": "^3.10.0",
     "node-sass": "^3.2.0",
-    "react": "^0.13.3",
     "sass-loader": "^1.0.3",
     "style-loader": "^0.12.3",
     "url-loader": "^0.5.6",
@@ -28,6 +27,7 @@
     "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
-    "electron-rebuild": "^0.2.5"
+    "electron-rebuild": "^0.2.5",
+    "react": "^0.13.3"
   }
 }
