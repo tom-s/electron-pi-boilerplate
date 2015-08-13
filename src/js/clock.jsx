@@ -11,7 +11,6 @@ export default class Clock extends React.Component {
         }
     }
 
-
     componentDidMount() {
         this._tick();
     }
@@ -21,9 +20,9 @@ export default class Clock extends React.Component {
             <span className="Seconds">{this.state.seconds}s</span>
         ) : null;
         return (
-            <div className="Clock">
-                <span className="Hours">{this.state.hours}h</span><span className="Separator"/>
-                <span className="Minutes">{this.state.minutes}min</span><span className="Separator"/>
+            <div className="Clock text-center">
+                <span className="Hours">{this.state.hours}:</span>
+                <span className="Minutes">{this.state.minutes}</span>
                 {seconds}
             </div>
         );
@@ -34,9 +33,9 @@ export default class Clock extends React.Component {
         var date = new Date();
 
         this.setState({
-            'hours': date.getHours(),
-            'minutes': date.getMinutes(),
-            'seconds': date.getSeconds()
+            'hours': ('0'  + date.getHours()).slice(-2),
+            'minutes': ('0'  + date.getMinutes()).slice(-2),
+            'seconds': ('0'  + date.getSeconds()).slice(-2),
         });
 
         // Plan next tick

@@ -1,0 +1,47 @@
+.Home {
+  .row {
+    margin-bottom: 20px;
+
+  }
+  .Shadowed-column {
+    @include box-shadow(4px 3px 2px 0px rgba(0, 17, 15, 0.75));
+  }
+
+  /* Header (first row) */
+  .Header {
+    .Header-column {
+      height: 150px;
+    }
+
+    .Logo-wrapper {
+      color: #FFFFFF;
+    }
+
+    .Meteo-wrapper {
+      background-color: #93B9B5;
+    }
+
+    .Time-wrapper {
+      background-color: #003630;
+
+      .Clock {
+        color: #D6A8B0;
+        font-size: $font-huge;
+      }
+    }
+  }
+
+  /* Navigation (second row)*/
+  .Navigation {
+    height: 200px;
+
+    .Navigation-column {
+      height: 150px;
+      background-color: #0D564E;
+    }
+  }
+
+  .Content {
+    height: 800px;
+  }
+}

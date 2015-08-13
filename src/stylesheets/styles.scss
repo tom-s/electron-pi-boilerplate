@@ -1,15 +1,19 @@
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import 'variables';
+@import 'mixins';
+
+/* Bootstrap import */
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 
+/* Import specific stylessheets */
+@import 'home';
+
+/* Generic style */
 .html, body {
-  background-color: #f7ecb5;
+  background-color: #277069;
 }
 
-.Home {
-
-  .Card {
-    background-color: #FFFFFF;
-    width: 400px;
-    height: 400px;
-  }
+.main {
+  width: calc(100% - 50px);
+  padding: 50px;
 }
+
