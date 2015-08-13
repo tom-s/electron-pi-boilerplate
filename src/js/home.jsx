@@ -1,13 +1,14 @@
 import React from 'react'
 import Card from './card.jsx'
 import CardsList from './cardsList.jsx'
+import Clock from './clock.jsx'
 
 var cards  = [
     {
-        title: 'caca',
+        title: 'test',
         steps: [
-            {content: 'ca sort de tes fesses'},
-            {content: 'tu pues comme du caca', style: 'italic'},
+            {content: 'adsddf'},
+            {content: 'aafdsfds', style: 'italic'},
             {content: 'poop'}
         ]
     },
@@ -26,13 +27,17 @@ var todayCard = cards[0];
 export default class Home extends React.Component {
     render() {
         return (
-            <div className="home">
+            <div className="Home">
                 <h1> Hello {this.props.name}! </h1>
-                <div className="card-container">
+                <div className="Card-wrapper">
                     <Card title={todayCard.title} steps={todayCard.steps}/>
                 </div>
 
-                <div className="cardsList-container">
+                <div className="Clock-wrapper">
+                    <Clock/>
+                </div>
+
+                <div className="CardsList-wrapper">
                     <CardsList cards={cards} />
                 </div>
             </div>

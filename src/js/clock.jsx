@@ -13,7 +13,21 @@ export default class Clock extends React.Component {
 
 
     componentDidMount() {
-        // Set initial time
+        this._tick();
+    }
+
+    render() {
+        return (
+            <div className="Clock">
+                <span className="Hours">{this.state.hours}h</span><span className="Separator"/>
+                <span className="Minutes">{this.state.minutes}min</span><span className="Separator"/>
+                <span className="Minutes">{this.state.seconds}s</span><span className="Separator"/>
+            </div>
+        );
+    }
+
+    _tick() {
+        // Set current time time
         var date = new Date();
 
         this.setState({
@@ -21,14 +35,10 @@ export default class Clock extends React.Component {
             'minutes': date.getMinutes(),
             'seconds': date.getSeconds()
         });
-    }
 
-    render() {
-        return (
-            <div className="Clock">
-                <span className="Hours">12</span><span className="Separator">
-                <span className="Minutes">12</span><span className="Separator">
-            </div>
-        );
+        // Plan next tick
+        window.requestAnimationFrame(_.bind(() => {
+            this._tick();
+        }, this)); // requestAnimationFrame or setTimeout ?
     }
 };
