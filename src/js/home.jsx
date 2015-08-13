@@ -1,5 +1,6 @@
 import React from 'react'
 import Clock from './clock.jsx'
+import Navigation from './navigation.jsx'
 
 export default class Home extends React.Component {
     render() {
@@ -22,10 +23,10 @@ export default class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="Navigation row">
+                <div className="Menus row">
                     <div className="col-md-12">
-                        <div className="Column Navigation-column Shadowed-column">
-                            Navigation here
+                        <div className="Column Menus-column Shadowed-column">
+                            <Navigation/>
                         </div>
                     </div>
                 </div>

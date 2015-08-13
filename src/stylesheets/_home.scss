@@ -1,11 +1,15 @@
 .Home {
   .row {
     margin-bottom: 20px;
+  }
 
+  .Column {
+    @include rounded(1em);
+    &.Shadowed-column {
+      @include box-shadow(4px 3px 2px 0px rgba(0, 17, 15, 0.75));
+    }
   }
-  .Shadowed-column {
-    @include box-shadow(4px 3px 2px 0px rgba(0, 17, 15, 0.75));
-  }
+
 
   /* Header (first row) */
   .Header {
@@ -31,11 +35,11 @@
     }
   }
 
-  /* Navigation (second row)*/
-  .Navigation {
+  /* Menus (second row)*/
+  .Menus {
     height: 200px;
 
-    .Navigation-column {
+    .Menus-column {
       height: 150px;
       background-color: #0D564E;
     }
