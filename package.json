@@ -28,6 +28,8 @@
   },
   "dependencies": {
     "electron-rebuild": "^0.2.5",
-    "react": "^0.13.3"
+    "file-loader": "^0.8.4",
+    "react": "^0.13.3",
+    "url-loader": "^0.5.6"
   }
 }

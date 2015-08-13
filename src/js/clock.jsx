@@ -17,11 +17,14 @@ export default class Clock extends React.Component {
     }
 
     render() {
+        var seconds = (this.props.seconds) ? (
+            <span className="Seconds">{this.state.seconds}s</span>
+        ) : null;
         return (
             <div className="Clock">
                 <span className="Hours">{this.state.hours}h</span><span className="Separator"/>
                 <span className="Minutes">{this.state.minutes}min</span><span className="Separator"/>
-                <span className="Minutes">{this.state.seconds}s</span><span className="Separator"/>
+                {seconds}
             </div>
         );
     }
@@ -37,8 +40,17 @@ export default class Clock extends React.Component {
         });
 
         // Plan next tick
-        window.requestAnimationFrame(_.bind(() => {
+        var refreshDelay = (this.props.seconds) ? 300 : 1000;
+
+        setTimeout(_.bind(() => {
             this._tick();
-        }, this)); // requestAnimationFrame or setTimeout ?
+        }, this), refreshDelay);
     }
+};
+
+Clock.propTypes = {
+    seconds:  React.PropTypes.bool
+};
+Clock.defaultProps = {
+    seconds: false
 };
