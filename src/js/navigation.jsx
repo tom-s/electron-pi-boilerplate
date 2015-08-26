@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react-dist'
 import _ from 'lodash'
 
 export default class Navigation extends React.Component {

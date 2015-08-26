@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react-dist'
 import Clock from './clock.jsx'
 import Navigation from './navigation.jsx'
 
