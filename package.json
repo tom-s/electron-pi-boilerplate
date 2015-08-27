@@ -27,6 +27,7 @@
     "webpack-dev-server": "^1.10.1"
   },
   "dependencies": {
+    "baconjs": "^0.7.71",
     "electron-rebuild": "^0.2.5",
     "file-loader": "^0.8.4",
     "react": "^0.13.3",

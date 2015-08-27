@@ -2,6 +2,7 @@ import React from 'react'
 import Clock from './clock.jsx'
 import Navigation from './navigation.jsx'
 
+
 export default class Home extends React.Component {
     render() {
         return (
@@ -19,7 +20,7 @@ export default class Home extends React.Component {
                     </div>
                     <div className="col-md-3">
                         <div className="Column Header-column Time-wrapper Shadowed-column">
-                            <Clock />
+                            <Clock date={this.props.date}/>
                         </div>
                     </div>
                 </div>

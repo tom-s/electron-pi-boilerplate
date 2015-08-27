@@ -1,0 +1,11 @@
+# Navigation #
+- Réfléchir à comment faire la navigation et surtout les transitions
+
+# Météo #
+- Afficher la météo courante
+
+#  Notifications #
+- Réfléchir au sujet
+
+# Reminders #
+- Réfléchir au sujet
