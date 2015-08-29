@@ -21,55 +21,64 @@ export default class Streams {
             return new Date();
         })//.log();
 
-        this.CurrentHomeWidgetId = this.Input.scan(0, (currentVal, direction) => {
+        this.CurrentHomeWidgetId = this.Input.scan(-1, (currentVal, direction) => {
             var newVal = currentVal;
+            console.log("currentval", currentVal);
             switch(currentVal) {
+                case -1:
+                    switch(direction) {
+                        case 'top':     newVal = 0; break;
+                        case 'down':    newVal = 4; break;
+                        case 'left':    newVal = 3; break;
+                        case 'right':   newVal = 3; break;
+                    }
+                    break;
                 case 0: //logo
                     switch(direction) {
-                        case 'top':     newVal = 1; break;
-                        case 'down':    newVal = 4; break;
-                        case 'left':    newVal = 4; break;
-                        case 'right':   newVal = 5; break;
+                        case 'top':     newVal = 4; break;
+                        case 'down':    newVal = 3; break;
+                        case 'left':    newVal = 2; break;
+                        case 'right':   newVal = 1; break;
                     }
                     break;
                 case 1: // meteo
                     switch(direction) {
-                        case 'top':     newVal = 0; break;
-                        case 'down':    newVal = 0; break;
+                        case 'top':     newVal = 5; break;
+                        case 'down':    newVal = 3; break;
                         case 'left':    newVal = 0; break;
-                        case 'right':   newVal = 0; break;
+                        case 'right':   newVal = 2; break;
                     }
                     break;
                 case 2: // time
                     switch(direction) {
-                        case 'down':  newVal = 0; break;
-                        case 'top':     newVal = 0; break;
-                        case 'left':    newVal = 0; break;
+                        case 'top':     newVal = 5; break;
+                        case 'down':    newVal = 3; break;
+                        case 'left':    newVal = 1; break;
                         case 'right':   newVal = 0; break;
                     }
                     break;
                 case 3: // nav
                     switch(direction) {
-                        case 'down':  newVal = 0; break;
                         case 'top':     newVal = 0; break;
-                        case 'left':    newVal = 0; break;
-                        case 'right':   newVal = 0; break;
+                        case 'down':    newVal = 4; break;
+                        case 'left':    newVal = 3; break;
+                        case 'right':   newVal = 3; break;
                     }
                     break;
                 case 4: // messages
                     switch(direction) {
-                        case 'down':  newVal = 0; break;
-                        case 'top':     newVal = 0; break;
-                        case 'left':    newVal = 0; break;
-                        case 'right':   newVal = 0; break;
+                        case 'top':     newVal = 3; break;
+                        case 'down':    newVal = 0; break;
+                        case 'left':    newVal = 5; break;
+                        case 'right':   newVal = 5; break;
                     }
                     break;
                 case 5: // reminders
                     switch(direction) {
-                        case 'down':  newVal = 0; break;
-                        case 'top':     newVal = 0; break;
-                        case 'left':    newVal = 0; break;
-                        case 'right':   newVal = 0; break;
+                        case 'top':     newVal = 3; break;
+                        case 'down':    newVal = 0; break;
+                        case 'left':    newVal = 4; break;
+                        case 'right':   newVal = 4; break;
                     }
                     break;
 

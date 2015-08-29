@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import widgetMixin from './widgetMixin.jsx'
+import widgetMixin from './../widgetMixin.jsx'
 
 class Navigation extends React.Component {
     constructor(props) {

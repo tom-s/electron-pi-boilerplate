@@ -5,3 +5,12 @@ html {
     overflow: hidden;
   }
 }
+
+.Widget {
+  &.active {
+    border: 2px solid #FFFFFF;
+    height: 100%;
+    width: 100%;
+    @include rounded(1em);
+  }
+}

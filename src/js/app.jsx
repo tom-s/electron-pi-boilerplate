@@ -1,7 +1,7 @@
 require('../stylesheets/styles.scss');
 
 import React from 'react'
-import Home from './home.jsx'
+import Home from './components/home.jsx'
 import Streams from './streams.js'
 import Bacon from 'baconjs'
 

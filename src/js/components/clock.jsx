@@ -1,8 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
-import widgetMixin from './widgetMixin.jsx'
+import widgetMixin from './../widgetMixin.jsx'
 
-export default class Clock extends React.Component {
+class Clock extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -23,6 +23,7 @@ export default class Clock extends React.Component {
     }
 };
 
+// Props
 Clock.propTypes = {
     seconds:  React.PropTypes.bool,
     date: React.PropTypes.instanceOf(Date)
@@ -34,3 +35,5 @@ Clock.defaultProps = {
 
 // Mixins
 Clock = widgetMixin(Clock);
+
+export default Clock;

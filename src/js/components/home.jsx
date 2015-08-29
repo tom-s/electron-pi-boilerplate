@@ -1,4 +1,8 @@
 import React from 'react'
+
+// Components
+import Logo from './logo.jsx'
+import Weather from './weather.jsx'
 import Clock from './clock.jsx'
 import Navigation from './navigation.jsx'
 
@@ -10,24 +14,24 @@ class Home extends React.Component {
                 <div className="Header row">
                     <div className="col-md-2">
                         <div className="Column Header-column Logo-wrapper">
-                            Logo
+                            <Logo widgetId={0} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
                         </div>
                     </div>
                     <div className="col-md-7">
                         <div className="Column Header-column Meteo-wrapper Shadowed-column">
-                            Meteo
+                            <Weather widgetId={1} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
                         </div>
                     </div>
                     <div className="col-md-3">
                         <div className="Column Header-column Time-wrapper Shadowed-column">
-                            <Clock date={this.props.date} widgetId={3} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
+                            <Clock date={this.props.date} widgetId={2} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
                         </div>
                     </div>
                 </div>
                 <div className="Menus row">
                     <div className="col-md-12">
                         <div className="Column Menus-column Shadowed-column">
-                            <Navigation widgetId={4} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
+                            <Navigation widgetId={3} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
                         </div>
                     </div>
                 </div>
