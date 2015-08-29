@@ -1,5 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
+import widgetMixin from './widgetMixin.jsx'
 
 export default class Clock extends React.Component {
     constructor(props) {
@@ -30,3 +31,6 @@ Clock.defaultProps = {
     seconds: false,
     date: new Date()
 };
+
+// Mixins
+Clock = widgetMixin(Clock);

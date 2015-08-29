@@ -9,7 +9,7 @@ var streams = new Streams();
 
 const appState = Bacon.combineTemplate({
     date: streams.Timer,
-    currentHomeWidgetNumber: streams.CurrentHomeWidgetNumber
+    currentHomeWidgetId: streams.CurrentHomeWidgetId
     // add other streams here
 });
 

@@ -48,4 +48,10 @@
   .Content {
     height: 800px;
   }
+
+  .Widget {
+    .active {
+      border: 1px solid red;
+    }
+  }
 }

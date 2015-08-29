@@ -21,7 +21,7 @@ export default class Streams {
             return new Date();
         })//.log();
 
-        this.CurrentHomeWidgetNumber = this.Input.scan(0, (currentVal, direction) => {
+        this.CurrentHomeWidgetId = this.Input.scan(0, (currentVal, direction) => {
             var newVal = currentVal;
             switch(currentVal) {
                 case 0: //logo

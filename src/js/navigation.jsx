@@ -1,14 +1,11 @@
 import React from 'react'
 import _ from 'lodash'
+import widgetMixin from './widgetMixin.jsx'
 
-export default class Navigation extends React.Component {
+class Navigation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
-    }
-
-    componentDidMount() {
-
+        this.state = {};
     }
 
     render() {
@@ -26,5 +23,11 @@ export default class Navigation extends React.Component {
     }
 };
 
+// Props
 Navigation.propTypes = {};
 Navigation.defaultProps = {};
+
+// Mixins
+Navigation = widgetMixin(Navigation);
+
+export default Navigation;
