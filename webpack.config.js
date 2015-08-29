@@ -1,7 +1,8 @@
 // webpack.config.js
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
-var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+var pathToReact = path.resolve(node_modules, 'react/dist/react.js');
+var pathToReactCanvas = path.resolve('src/js/vendors/react-canvas/ReactCanvas.js');
 
 var config = {
     entry: path.resolve(__dirname, 'src/js/app.jsx'),
@@ -11,7 +12,8 @@ var config = {
     },
     resolve: {
         alias: {
-            'react': pathToReact
+            'react-dist': pathToReact,
+            'react-canvas': pathToReactCanvas
         }
     },
     module: {
