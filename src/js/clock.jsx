@@ -1,4 +1,4 @@
-import React from 'react-dist'
+import React from 'react'
 import _ from 'lodash'
 
 export default class Clock extends React.Component {
