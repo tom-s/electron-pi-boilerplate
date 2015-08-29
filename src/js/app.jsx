@@ -8,8 +8,8 @@ import Bacon from 'baconjs'
 var streams = new Streams();
 
 const appState = Bacon.combineTemplate({
-    date: streams.Timer.toProperty(),
-    currentHomeWidget: streams.CurrentHomeWidget.toProperty()
+    date: streams.Timer,
+    currentHomeWidgetNumber: streams.CurrentHomeWidgetNumber
     // add other streams here
 });
 
