@@ -3,7 +3,7 @@ import Clock from './clock.jsx'
 import Navigation from './navigation.jsx'
 
 
-export default class Home extends React.Component {
+class Home extends React.Component {
     render() {
         return (
             <div className="Home container-fluid">
@@ -20,14 +20,14 @@ export default class Home extends React.Component {
                     </div>
                     <div className="col-md-3">
                         <div className="Column Header-column Time-wrapper Shadowed-column">
-                            <Clock date={this.props.date} widgetId={3}/>
+                            <Clock date={this.props.date} widgetId={3} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
                         </div>
                     </div>
                 </div>
                 <div className="Menus row">
                     <div className="col-md-12">
                         <div className="Column Menus-column Shadowed-column">
-                            <Navigation widgetId={4}/>
+                            <Navigation widgetId={4} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
                         </div>
                     </div>
                 </div>
@@ -43,3 +43,15 @@ export default class Home extends React.Component {
         );
     }
 };
+
+// Props
+Home.propTypes = {
+    currentHomeWidgetId: React.PropTypes.number,
+    date: React.PropTypes.instanceOf(Date)
+};
+Home.defaultProps = {
+    currentHomeWidgetId : null,
+    date: new Date()
+};
+
+export default Home;

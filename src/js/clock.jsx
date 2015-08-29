@@ -25,7 +25,7 @@ export default class Clock extends React.Component {
 
 Clock.propTypes = {
     seconds:  React.PropTypes.bool,
-    date: React.PropTypes.Date
+    date: React.PropTypes.instanceOf(Date)
 };
 Clock.defaultProps = {
     seconds: false,

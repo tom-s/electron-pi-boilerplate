@@ -17,7 +17,7 @@ export default class Streams {
             return direction;
         })//.log();
 
-        this.Timer = Bacon.interval(500).map(() => {
+        this.Timer = Bacon.interval(300).map(() => {
             return new Date();
         })//.log();
 

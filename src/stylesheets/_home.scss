@@ -10,6 +10,15 @@
     }
   }
 
+  .Widget {
+    &.active {
+      border: 2px solid red;
+      height: 100%;
+      width: 100%;
+      @include rounded(1em);
+    }
+  }
+
 
   /* Header (first row) */
   .Header {
@@ -47,11 +56,5 @@
 
   .Content {
     height: 800px;
-  }
-
-  .Widget {
-    .active {
-      border: 1px solid red;
-    }
   }
 }

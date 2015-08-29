@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-export default function widgetMixin(Component) {
+function widgetMixin(Component) {
     const widgetComponent = React.createClass({
         getInitialState() {
             return {
@@ -9,16 +9,13 @@ export default function widgetMixin(Component) {
             };
         },
 
-        componentWillUpdate() {
-            if(this.props.currentHomeWidgetId === this.props.widgetId) {
+        componentWillUpdate(nextProps) {
+            if(this.props.currentHomeWidgetId !== nextProps.currentHomeWidgetId) {
                 this.setState({
-                    activated : true
-                });
-            } else {
-                this.setState({
-                    activated : true
+                    activated : nextProps.currentHomeWidgetId === this.props.widgetId
                 });
             }
+
         },
 
         render() {
@@ -35,3 +32,12 @@ export default function widgetMixin(Component) {
     });
     return widgetComponent;
 };
+
+widgetMixin.propTypes = {
+    currentHomeWidgetId: React.PropTypes.number
+};
+widgetMixin.defaultProps = {
+    currentHomeWidgetId : null
+};
+
+export default widgetMixin;
