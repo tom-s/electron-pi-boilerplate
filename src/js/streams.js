@@ -1,5 +1,8 @@
 
 import Bacon from 'baconjs'
+import request from 'superagent'
+
+require('superagent-jsonp')(request);
 
 export default class Streams {
     constructor() {
@@ -22,6 +25,12 @@ export default class Streams {
         })//.log();
 
         //this.Loading = new Bacon.Bus;
+        this.Weather = Bacon.fromPromise(request
+            .get('https://api.forecast.io/forecast/a74e8df1fad1212a4a0dcb3f2dd45a61/37.8267,-122.423')
+            .jsonp()
+        ).map(res => {
+            return res.body.currently
+        }).log()
 
         this.CurrentHomeWidgetId = this.Input.scan(-1, (currentVal, direction) => {
             var newVal = currentVal;

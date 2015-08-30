@@ -10,6 +10,7 @@ var streams = new Streams();
 const appState = Bacon.combineTemplate({
     date: streams.Timer,
     currentHomeWidgetId: streams.CurrentHomeWidgetId,
+    currentWeather: streams.Weather
     //loading: streams.Loading
     // add other streams here
 });

@@ -14,15 +14,6 @@ class Weather extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            address: '',
-            current: {
-                summary: '',
-                icon: 'clear-day',
-                temperature: ''
-            },
-            hourly: [],
-            showSearch: false,
-            showHourly: false
         };
     }
 
@@ -53,23 +44,7 @@ class Weather extends React.Component {
     }
 
     load(address) {
-        var self = this;
-        var r = new XMLHttpRequest();
-        r.open('GET', '/weather/?address=' + encodeURIComponent(address));
-        r.responseType = 'json';
-        r.onload = function() {
-            if(this.status === 200) {
-                self.setState({
-                    address: this.response.formattedAddress,
-                    current: this.response.data.currently,
-                    hourly: this.response.data.hourly.data.slice(0, 24),
-                    isLoading: false,
-                    showSearch: false
-                });
-            }
-        };
-        r.send();
-        this.setState({ isLoading: true });
+
     }
 
     render() {
@@ -85,11 +60,11 @@ class Weather extends React.Component {
                     <div className="ww-bc">
                         <LocationHeader
                             onClick={ this.handleAddressClick }
-                            address={ this.state.address } />
+                            address={ "Lyon, France" } />
                         <CurrentStatus
-                            temperature={ this.state.current.temperature }
-                            icon={ this.state.current.icon }
-                            summary={ this.state.current.summary } />
+                            temperature={ this.props.current.temperature }
+                            icon={ this.props.current.icon }
+                            summary={ this.props.current.summary } />
                     </div>
                 </div>
             </div>
@@ -100,10 +75,8 @@ class Weather extends React.Component {
 
 // Props
 Weather.propTypes = {
-    initialAddress: React.PropTypes.string
 };
 Weather.defaultProps = {
-    initialAddress: "Lyon, France"
 };
 
 // Mixins
