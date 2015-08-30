@@ -1,8 +1,16 @@
-# Navigation #
-- Réfléchir à comment faire la navigation et surtout les transitions
-
 # Météo #
 - Afficher la météo courante
+
+# Faire effet loader
+-
+
+# Routage
+- Faire routage
+- Faire transitions lors du routage
+
+# Faire navigation jolie
+- ajouter icônes
+- faire effet lorsqu'on bouge
 
 #  Notifications #
 - Réfléchir au sujet

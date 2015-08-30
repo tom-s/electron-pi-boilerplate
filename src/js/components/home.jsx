@@ -19,7 +19,7 @@ class Home extends React.Component {
                     </div>
                     <div className="col-md-7">
                         <div className="Column Header-column Meteo-wrapper Shadowed-column">
-                            <Weather widgetId={1} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
+                            <Weather widgetId={1} currentHomeWidgetId={this.props.currentHomeWidgetId} initialAddress="Lyon, France"/>
                         </div>
                     </div>
                     <div className="col-md-3">

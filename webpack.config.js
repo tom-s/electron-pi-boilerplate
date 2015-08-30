@@ -1,20 +1,22 @@
 // webpack.config.js
 var path = require('path');
+var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.js');
-var pathToReactCanvas = path.resolve('src/js/vendors/react-canvas/ReactCanvas.js');
 
 var config = {
-    entry: path.resolve(__dirname, 'src/js/app.jsx'),
+    entry: {
+        app: [ path.resolve(__dirname, 'src/js/app.jsx') ],
+        vendors: [
+            path.resolve(__dirname, 'src/js/vendors/skyicons.js')
+        ]
+    },
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js'
+        filename: '[name].bundle.js'
     },
     resolve: {
-        alias: {
-            'react-dist': pathToReact,
-            'react-canvas': pathToReactCanvas
-        }
+        alias: {}
     },
     module: {
         loaders: [

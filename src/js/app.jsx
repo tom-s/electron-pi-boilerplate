@@ -9,9 +9,13 @@ var streams = new Streams();
 
 const appState = Bacon.combineTemplate({
     date: streams.Timer,
-    currentHomeWidgetId: streams.CurrentHomeWidgetId
+    currentHomeWidgetId: streams.CurrentHomeWidgetId,
+    //loading: streams.Loading
     // add other streams here
 });
+
+// Start loading
+//streams.Loader.push(true);
 
 appState.onValue(state => {
     React.render(<Home  {...state} />, document.getElementById('main'));

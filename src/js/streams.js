@@ -21,6 +21,8 @@ export default class Streams {
             return new Date();
         })//.log();
 
+        //this.Loading = new Bacon.Bus;
+
         this.CurrentHomeWidgetId = this.Input.scan(-1, (currentVal, direction) => {
             var newVal = currentVal;
             console.log("currentval", currentVal);
