@@ -3,12 +3,13 @@ var path = require('path');
 var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.js');
+var pathToVendors =  path.resolve(__dirname, 'src/js/vendors/');
 
 var config = {
     entry: {
         app: [ path.resolve(__dirname, 'src/js/app.jsx') ],
         vendors: [
-            path.resolve(__dirname, 'src/js/vendors/skyicons.js')
+            pathToVendors + '/skyicons.js'
         ]
     },
     output: {
@@ -34,7 +35,7 @@ var config = {
                 loader: 'url-loader?limit=100000'
             }
         ],
-        noParse: [pathToReact]
+        noParse: [pathToReact, pathToVendors]
     }
 };
 

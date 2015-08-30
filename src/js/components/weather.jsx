@@ -26,12 +26,16 @@ class Weather extends React.Component {
         };
     }
 
+    getState() {
+        return this.state;
+    }
+
     componentDidMount() {
         this.handleLocationChange(this.props.initialAddress);
     }
 
     handleLocationChange(address) {
-        this.setState( this.getInitialState() );
+        this.setState( this.getState() );
         this.load(address);
     }
 
