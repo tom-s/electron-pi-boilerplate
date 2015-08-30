@@ -34,6 +34,8 @@ class CurrentStatus extends React.Component {
     }
 
     _getFormattedTemperature(temperature) {
+        console.log("temperature", temperature);
+        temperature = (temperature - 32) * 5 / 9;
         if(temperature) {
             return <span>{ Math.round(temperature) }<sup>º</sup>C</span>;
         }
