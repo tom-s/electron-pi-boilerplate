@@ -25,10 +25,8 @@ export default class Streams {
         })//.log();
 
         //this.Loading = new Bacon.Bus;
-        this.Weather = Bacon.fromPromise(request
-            .get('https://api.forecast.io/forecast/a74e8df1fad1212a4a0dcb3f2dd45a61/37.8267,-122.423')
-            .jsonp()
-        ).map(res => {
+        this.Weather = Bacon.interval(3000).flatMap(this.getWeather).map(res => {
+            console.log("retrieved weathers");
             return res.body.currently
         }).log()
 
@@ -96,6 +94,13 @@ export default class Streams {
             }
             return newVal;
         }).log();
+    }
+
+    getWeather() {
+        return Bacon.fromPromise(request
+                .get('https://api.forecast.io/forecast/a74e8df1fad1212a4a0dcb3f2dd45a61/37.8267,-122.423')
+                .jsonp()
+        );
     }
 }
 
