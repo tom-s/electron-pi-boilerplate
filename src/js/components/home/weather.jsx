@@ -3,11 +3,11 @@ import _ from 'lodash'
 import classnames from 'classnames'
 
 // Components
-import LocationHeader from './weather/locationHeader.jsx'
-import CurrentStatus from './weather/currentStatus.jsx'
+import LocationHeader from './../weather/locationHeader.jsx'
+import CurrentStatus from './../weather/currentStatus.jsx'
 
 // Streams
-import WeatherStream from '../streams/weather.js'
+import WeatherStream from '../../streams/weather.js'
 
 const WEATHER = new WeatherStream();
 
@@ -28,7 +28,6 @@ class Weather extends React.Component {
         this.handleLocationChange(this.props.initialAddress);
         // Subscribe to streams
         this._unsubscribe = WEATHER.onValue(forecasts => {
-            console.log("forecasts", forecasts);
             this.setState({
                 forecasts: forecasts
             });
@@ -49,7 +48,6 @@ class Weather extends React.Component {
         });
 
         var forecasts = _.map(this.state.forecasts, (forecast) => {
-            console.log("forecast", forecast);
             return (
                 <li className="Weather">
                     <LocationHeader

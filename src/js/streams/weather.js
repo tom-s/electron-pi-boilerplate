@@ -6,14 +6,15 @@ require('superagent-jsonp')(request);
 
 export default class WeatherStream {
     constructor() {
-        return Bacon.once().merge(Bacon.interval(1800)).flatMap(this._fetchWeather).map(weathers => {
+        return Bacon.once().merge(Bacon.interval(1800 * 1000)).flatMap(this._fetchWeather).map(weathers => {
             return _.map(weathers, function(res) {
                 return res.body.currently
             });
-        }).log()
+        })
     }
 
     _fetchWeather() {
+        console.log("fetch weatcher");
         var now = Math.round((new Date()).getTime() / 1000);
         var interval = 7200;
         return Bacon.combineAsArray(

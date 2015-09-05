@@ -1,11 +1,9 @@
 # Météo #
-- Afficher la météo pour les prochaines heures
-
-# Routage
-- Faire routage
-- Faire transitions lors du routage
+- Afficher des heures fixes à la place ? ou sinon réfléchir à solution pour les transitions
+- Afficher l'heure
 
 # Faire navigation menu
+- faire que ca change le widget actuel
 - refaire en s'inspirant de ce que j'avait fait
 - ajouter icônes
 - faire effet lorsqu'on bouge

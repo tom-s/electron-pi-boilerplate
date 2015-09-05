@@ -1,10 +1,11 @@
 import React from 'react'
+import PictureShow from 'react-picture-show'
 
 // Components
-import Logo from './logo.jsx'
-import Weather from './weather.jsx'
-import Clock from './clock.jsx'
-import Navigation from './navigation.jsx'
+import Logo from './home/logo.jsx'
+import Weather from './home/weather.jsx'
+import Clock from './home/clock.jsx'
+import Navigation from './home/navigation.jsx'
 
 
 class Home extends React.Component {
@@ -35,13 +36,24 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="Content row">
-                    <div className="messages col-md-6">
-                        Messages here
-                    </div>
-                    <div className="reminders col-md-6">
-                        Reminders here
-                    </div>
+                <div className="Pages row">
+                    <PictureShow className="col-md-12 Pages-wrapper">
+                        <div className="Page">
+                            page 1
+                        </div>
+                        <div className="Page">
+                            page 2
+                        </div>
+                        <div className="Page">
+                            page 3
+                        </div>
+                        <div className="Page">
+                            page 4
+                        </div>
+                        <div className="Page">
+                            page 5
+                        </div>
+                    </PictureShow>
                 </div>
             </div>
         );

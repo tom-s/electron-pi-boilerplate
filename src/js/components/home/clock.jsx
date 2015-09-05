@@ -2,9 +2,9 @@
 import React from 'react'
 import _ from 'lodash'
 // Mixins
-import widgetMixin from './../widgetMixin.jsx'
+import widgetMixin from './../../widgetMixin.jsx'
 // Streams
-import TimerStream from '../streams/timer.js'
+import TimerStream from '../../streams/timer.js'
 
 const TIMER = new TimerStream();
 
