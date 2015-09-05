@@ -1,23 +1,44 @@
+// Tools
 import React from 'react'
 import _ from 'lodash'
+// Mixins
 import widgetMixin from './../widgetMixin.jsx'
+// Streams
+import TimerStream from '../streams/timer.js'
+
+const TIMER = new TimerStream();
 
 class Clock extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            'date': null
+        }
     }
+
+    componentDidMount() {
+        // Subscribe to streams
+        this._unsubscribe = TIMER.onValue(date => {
+            this.setState({
+                date: date
+            });
+        });
+    }
+
+    componentWillUnmount() {
+        this._unsubscribe();
+    }
+
 
     render() {
         // Format time
-        var hours = ('0'  + this.props.date.getHours()).slice(-2);
-        var minutes = ('0'  + this.props.date.getMinutes()).slice(-2);
-        var seconds =  (this.props.seconds) ? ('0'  + this.props.date.getSeconds()).slice(-2) : null;
+        var hours = (this.state.date) ? ('0'  + this.state.date.getHours()).slice(-2) : null;
+        var minutes = (this.state.date) ? ('0'  + this.state.date.getMinutes()).slice(-2) : null;
 
         return (
             <div className="Clock text-center">
                 <span className="Hours">{hours}:</span>
                 <span className="Minutes">{minutes}</span>
-                <span className="Seconds">{seconds}</span>
             </div>
         );
     }
@@ -25,15 +46,11 @@ class Clock extends React.Component {
 
 // Props
 Clock.propTypes = {
-    seconds:  React.PropTypes.bool,
-    date: React.PropTypes.instanceOf(Date)
 };
 Clock.defaultProps = {
-    seconds: false,
-    date: new Date()
 };
 
 // Mixins
-Clock = widgetMixin(Clock);
+//Clock = widgetMixin(Clock);
 
 export default Clock;

@@ -1,16 +1,12 @@
 # Météo #
-- Faire que le timer de la météo courante soit pluggée sur le timer
-- Faire que la météo s'affiche toutes les heures
-- Afficher le détail ? ou pour les prochains jours
-
-# Faire effet loader
--
+- Afficher la météo pour les prochaines heures
 
 # Routage
 - Faire routage
 - Faire transitions lors du routage
 
-# Faire navigation jolie
+# Faire navigation menu
+- refaire en s'inspirant de ce que j'avait fait
 - ajouter icônes
 - faire effet lorsqu'on bouge
 

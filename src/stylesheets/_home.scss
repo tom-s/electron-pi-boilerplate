@@ -21,8 +21,14 @@
       color: #FFFFFF;
     }
 
-    .Meteo-wrapper {
+    .Weather-wrapper {
       background-color: #93B9B5;
+
+      .Weather-list {
+        .Weather {
+          float: left;
+        }
+      }
     }
 
     .Time-wrapper {

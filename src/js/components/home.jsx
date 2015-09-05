@@ -14,24 +14,24 @@ class Home extends React.Component {
                 <div className="Header row">
                     <div className="col-md-2">
                         <div className="Column Header-column Logo-wrapper">
-                            <Logo widgetId={0} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
+                            <Logo widgetId={0}/>
                         </div>
                     </div>
                     <div className="col-md-7">
-                        <div className="Column Header-column Meteo-wrapper Shadowed-column">
-                            <Weather widgetId={1} currentHomeWidgetId={this.props.currentHomeWidgetId} current={this.props.currentWeather}/>
+                        <div className="Column Header-column Weather-wrapper Shadowed-column">
+                             <Weather widgetId={1}/>
                         </div>
                     </div>
                     <div className="col-md-3">
                         <div className="Column Header-column Time-wrapper Shadowed-column">
-                            <Clock date={this.props.date} widgetId={2} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
+                            <Clock widgetId={2}/>
                         </div>
                     </div>
                 </div>
                 <div className="Menus row">
                     <div className="col-md-12">
                         <div className="Column Menus-column Shadowed-column">
-                            <Navigation widgetId={3} currentHomeWidgetId={this.props.currentHomeWidgetId}/>
+                            <Navigation widgetId={3}/>
                         </div>
                     </div>
                 </div>
@@ -50,12 +50,8 @@ class Home extends React.Component {
 
 // Props
 Home.propTypes = {
-    currentHomeWidgetId: React.PropTypes.number,
-    date: React.PropTypes.instanceOf(Date)
 };
 Home.defaultProps = {
-    currentHomeWidgetId : null,
-    date: new Date()
 };
 
 export default Home;

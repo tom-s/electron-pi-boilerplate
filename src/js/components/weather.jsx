@@ -6,14 +6,17 @@ import classnames from 'classnames'
 import LocationHeader from './weather/locationHeader.jsx'
 import CurrentStatus from './weather/currentStatus.jsx'
 
-// Mixins
-import widgetMixin from './../widgetMixin.jsx'
+// Streams
+import WeatherStream from '../streams/weather.js'
+
+const WEATHER = new WeatherStream();
 
 class Weather extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
+            forecasts: null
         };
     }
 
@@ -23,50 +26,47 @@ class Weather extends React.Component {
 
     componentDidMount() {
         this.handleLocationChange(this.props.initialAddress);
+        // Subscribe to streams
+        this._unsubscribe = WEATHER.onValue(forecasts => {
+            console.log("forecasts", forecasts);
+            this.setState({
+                forecasts: forecasts
+            });
+        });
+    }
+
+    componentWillUnmount() {
+        this._unsubscribe();
     }
 
     handleLocationChange(address) {
         this.setState( this.getState() );
-        this.load(address);
-    }
-
-    handleAddressClick(e) {
-        e.stopPropagation();
-        this.setState({ showSearch: !this.state.showSearch });
-    }
-
-    handleSearchBlur() {
-        this.setState({ showSearch: false });
-    }
-
-    handleToggleHourly() {
-        this.setState({ showHourly: !this.state.showHourly });
-    }
-
-    load(address) {
-
     }
 
     render() {
         var classes = classnames({
-            'ww': true,
-            'loading': this.state.isLoading,
-            'expand': this.state.showHourly
+
         });
+
+        var forecasts = _.map(this.state.forecasts, (forecast) => {
+            console.log("forecast", forecast);
+            return (
+                <li className="Weather">
+                    <LocationHeader
+                        address={ "Lyon, France" } />
+                    <CurrentStatus
+                        temperature={ forecast.temperature }
+                        icon={ forecast.icon }
+                        summary={ forecast.summary } />
+                </li>
+            )
+        });
+
         return (
-            <div className="Weather">
-                <div className={ classes }
-                     onClick={ this.handleToggleHourly }>
-                    <div className="ww-bc">
-                        <LocationHeader
-                            onClick={ this.handleAddressClick }
-                            address={ "Lyon, France" } />
-                        <CurrentStatus
-                            temperature={ this.props.current.temperature }
-                            icon={ this.props.current.icon }
-                            summary={ this.props.current.summary } />
-                    </div>
-                </div>
+            <div className="Weather-list">
+                <ul className={ classes }>
+                    {{forecasts}}
+                </ul>
             </div>
 
         );
@@ -78,8 +78,5 @@ Weather.propTypes = {
 };
 Weather.defaultProps = {
 };
-
-// Mixins
-Weather = widgetMixin(Weather);
 
 export default Weather;
