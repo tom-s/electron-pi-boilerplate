@@ -4,9 +4,15 @@ import React from 'react'
 //import Logo from './home/logo.jsx'
 import Clock from './clock.jsx'
 import SearchQuery from './searchQuery.jsx'
-import Websocket from 'react-websocket'
+import Io from 'socket.io-client'
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.socket = Io();
+        console.log("this.socket", this.socket);
+    }
+
     render() {
         return (
             <div className="Home container-fluid">
@@ -27,9 +33,12 @@ class Home extends React.Component {
                     </div>
                 </div>
 
-                <Websocket url='ws://localhost:3000/messages' onMessage={this._handleData}/>
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.socket.on('comments', this._handleData.bind(this));
     }
 
     _handleData(data) {

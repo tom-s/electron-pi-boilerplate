@@ -1,7 +1,7 @@
 {
-  "name": "electron",
+  "name": "Thomster",
   "version": "0.1.0",
-  "description": "Electron app",
+  "description": "Thomster app",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build"
@@ -30,6 +30,7 @@
     "moment": "^2.10.6",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
+    "socket.io-client": "^1.3.7",
     "superagent": "^1.3.0"
   }
 }
