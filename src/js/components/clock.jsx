@@ -1,12 +1,6 @@
 // Tools
 import React from 'react'
 import _ from 'lodash'
-// Mixins
-import widgetMixin from './../../widgetMixin.jsx'
-// Streams
-import TimerStream from '../../streams/timer.js'
-
-const TIMER = new TimerStream();
 
 class Clock extends React.Component {
     constructor(props) {
@@ -17,16 +11,10 @@ class Clock extends React.Component {
     }
 
     componentDidMount() {
-        // Subscribe to streams
-        this._unsubscribe = TIMER.onValue(date => {
-            this.setState({
-                date: date
-            });
-        });
+       this._tick();
     }
 
     componentWillUnmount() {
-        this._unsubscribe();
     }
 
 
@@ -41,6 +29,16 @@ class Clock extends React.Component {
                 <span className="Minutes">{minutes}</span>
             </div>
         );
+    }
+
+    _tick() {
+        var date = new Date();
+        this.setState({
+            date: date
+        });
+        window.setTimeout(function() {
+            this._tick();
+        }.bind(this), 500);
     }
 };
 

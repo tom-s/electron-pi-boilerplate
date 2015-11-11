@@ -1,9 +1,8 @@
-@import 'variables';
 @import 'mixins';
 @import 'common';
-@import 'slideshow';
 
 /* Bootstrap import */
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 
 /* Import specific stylessheets */
@@ -11,11 +10,5 @@
 
 /* Generic style */
 .html, body {
-  background-color: #277069;
+  background-color: #FFFFFF;
 }
-
-.main {
-  width: calc(100% - 50px);
-  padding: 50px;
-}
-

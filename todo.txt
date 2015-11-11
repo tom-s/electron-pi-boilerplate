@@ -1,15 +1,2 @@
-# Météo #
-- Afficher des heures fixes à la place ? ou sinon réfléchir à solution pour les transitions
-- Afficher l'heure
-
-# Faire navigation menu
-- faire que ca change le widget actuel
-- refaire en s'inspirant de ce que j'avait fait
-- ajouter icônes
-- faire effet lorsqu'on bouge
-
-#  Notifications #
-- Réfléchir au sujet
-
-# Reminders #
-- Réfléchir au sujet
+- Afficher logo en haut
+- ajouter l'icone du micro qui clignote quand on fait 3 claps
