@@ -26,7 +26,7 @@ class CurrentStatus extends React.Component {
     render() {
         return (
             <div className="ww-cur">
-                <canvas className="ww-cicon" ref="icon" width="128" height="128"></canvas>
+                <canvas className="ww-cicon" ref="icon" width="100" height="100"></canvas>
                 <span className="ww-ctemp">{ this._getFormattedTemperature(this.props.temperature) }</span>
                 <span className="ww-csum">{ this.props.summary }</span>
             </div>
