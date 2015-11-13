@@ -9,8 +9,7 @@ import Io from 'socket.io-client'
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.socket = Io(); // create websocket connection
-        console.log("this.socket", this.socket);
+        this.socket = Io.connect('http://localhost:8000');
     }
 
     render() {
@@ -38,11 +37,16 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.socket.on('comments', this._handleData.bind(this));
+        this.socket.on('wakeUp', this._wakeUp.bind(this));
+        this.socket.on('listenForOrder', this._listenForOrder.bind(this));
     }
 
-    _handleData(data) {
-        console.log('handle data', data);
+    _wakeUp(data) {
+        console.log('wake up', data);
+    }
+
+    _listenForOrder(data) {
+        console.log('listen for orders', data);
     }
 };
 
