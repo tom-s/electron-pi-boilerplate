@@ -1,2 +1,1 @@
-- Ajouter logo en haut
-- Ajouter l'icone du micro et la relier à socket.io pour savoir quand ca écoute ou pas
+

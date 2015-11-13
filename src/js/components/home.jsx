@@ -1,37 +1,36 @@
 import React from 'react'
+import Io from 'socket.io-client'
 
 // Components
 //import Logo from './home/logo.jsx'
 import Clock from './clock.jsx'
-import SearchQuery from './searchQuery.jsx'
-import Io from 'socket.io-client'
+import DynamicText from './dynamicText.jsx'
+import Microphone from './microphone.jsx'
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.socket = Io.connect('http://localhost:8000');
+        this.state = {
+            'text': 'zzzzzzzzzzzzzzzzzz...',
+            'listening': false
+        }
     }
 
     render() {
         return (
-            <div className="Home container-fluid">
-                <div className="Header row">
-                    <div className="col-md-10">
+            <div className="Home">
+                <div className="Clock-wrapper">
+                    <Clock />
+                </div>
+                <div className="Content">
+                    <div className="DynamicText-wrapper">
+                        <DynamicText text={this.state.text}/>
                     </div>
-                    <div className="col-md-2">
-                        <div className="Clock-wrapper">
-                           <Clock />
-                        </div>
+                    <div className="Microphone-wrapper" onClick={this._test.bind(this)}>
+                        <Microphone active={this.state.listening} />
                     </div>
                 </div>
-                <div className="Menus row">
-                    <div className="col-md-12">
-                        <div className="SearchQuery-wrapper">
-                            <SearchQuery />
-                        </div>
-                    </div>
-                </div>
-
             </div>
         );
     }
@@ -41,12 +40,24 @@ class Home extends React.Component {
         this.socket.on('listenForOrder', this._listenForOrder.bind(this));
     }
 
+    _test() {
+        this.setState({
+            listening: !this.state.listening
+        })
+    }
+
     _wakeUp(data) {
         console.log('wake up', data);
+         this.setState({
+             text: 'Yes ?'
+         });
     }
 
     _listenForOrder(data) {
         console.log('listen for orders', data);
+        this.setState({
+            listening: true
+        });
     }
 };
 
