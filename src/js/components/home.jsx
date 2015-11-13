@@ -9,7 +9,7 @@ import Io from 'socket.io-client'
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.socket = Io();
+        this.socket = Io(); // create websocket connection
         console.log("this.socket", this.socket);
     }
 
