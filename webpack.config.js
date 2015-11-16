@@ -31,7 +31,7 @@ var config = {
                 loader: "style!css!sass?outputStyle=expanded=includePaths[]=" + node_modules + "/bootstrap-sass/assets/stylesheets/"
             },
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|svg)$/,
                 loader: 'url-loader?limit=100000'
             }
         ],

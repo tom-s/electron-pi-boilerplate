@@ -2,6 +2,9 @@
 import React from 'react'
 import ClassNames from 'classnames'
 
+// Images
+var imgMicrophone = require("../../images/retromicrophone.jpg");
+
 class Microphone extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +19,7 @@ class Microphone extends React.Component {
 
         return (
             <div className={backgroundClasses}>
+                <img src={imgMicrophone}/>
                 <div className="Microphone"></div>
             </div>
         );
