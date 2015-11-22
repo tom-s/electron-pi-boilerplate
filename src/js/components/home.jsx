@@ -17,11 +17,17 @@ class Home extends React.Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        // We have constant streams from the timer clock, there is no need to render all the time
+        return this.props.date.getMinutes() !== nextProps.date.getMinutes() || nextState.text !== this.state.text || nextState.listening !== this.state.listening;
+    }
+
     render() {
+        console.log("home date is", this.props.date);
         return (
             <div className="Home">
                 <div className="Clock-wrapper">
-                    <Clock />
+                    <Clock date={this.props.date}/>
                 </div>
                 <div className="Content">
                     <div className="DynamicText-wrapper" onClick={this._test.bind(this)}>
@@ -64,8 +70,10 @@ class Home extends React.Component {
 
 // Props
 Home.propTypes = {
+    date: React.PropTypes.instanceOf(Date)
 };
 Home.defaultProps = {
+    date: new Date()
 };
 
 export default Home;
