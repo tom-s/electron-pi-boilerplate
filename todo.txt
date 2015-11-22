@@ -1,1 +1,1 @@
-
+- gérer connection, déconnection, events avec Bacon

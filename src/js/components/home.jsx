@@ -1,8 +1,6 @@
 import React from 'react'
-import Io from 'socket.io-client'
 
 // Components
-//import Logo from './home/logo.jsx'
 import Clock from './clock.jsx'
 import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
@@ -10,7 +8,6 @@ import Microphone from './microphone.jsx'
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.socket = Io.connect('http://localhost:8000');
         this.state = {
             'text': 'zzzzzzzzzzzzzzzzzz...',
             'listening': false
@@ -42,8 +39,8 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.socket.on('wakeUp', this._wakeUp.bind(this));
-        this.socket.on('listenForOrder', this._listenForOrder.bind(this));
+        //this.socket.on('wakeUp', this._wakeUp.bind(this));
+        //this.socket.on('listenForOrder', this._listenForOrder.bind(this));
     }
 
     _test() {
@@ -53,6 +50,7 @@ class Home extends React.Component {
             listening: !this.state.listening
         })
     }
+
     _wakeUp(data) {
         console.log('wake up', data);
          this.setState({
