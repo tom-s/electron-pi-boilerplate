@@ -24,10 +24,10 @@ class Home extends React.Component {
                     <Clock />
                 </div>
                 <div className="Content">
-                    <div className="DynamicText-wrapper" onClick={this._testAgain.bind(this)}>
+                    <div className="DynamicText-wrapper" onClick={this._test.bind(this)}>
                         <DynamicText text={this.state.text}/>
                     </div>
-                    <div className="Microphone-wrapper" onClick={this._test.bind(this)}>
+                    <div className="Microphone-wrapper">
                         <Microphone active={this.state.listening} />
                     </div>
                 </div>
@@ -40,19 +40,13 @@ class Home extends React.Component {
         this.socket.on('listenForOrder', this._listenForOrder.bind(this));
     }
 
-    _testAgain() {
+    _test() {
         console.log("click");
         this.setState({
-            text: 'Yes, Hester ?'
-        })
-    }
-
-    _test() {
-        this.setState({
+            text: 'Yes, Hester ?',
             listening: !this.state.listening
         })
     }
-
     _wakeUp(data) {
         console.log('wake up', data);
          this.setState({

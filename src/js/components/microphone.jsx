@@ -1,25 +1,31 @@
 
 import React from 'react'
 import ClassNames from 'classnames'
-import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg';
+import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg'
+import SnapAnimator from '../utils/snapAnimator.js'
 
 class Microphone extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            'active': false
+        }
     }
 
 
     render() {
         var backgroundClasses = ClassNames({
             'Background': true,
-            'active': this.props.active
+            'active': this.state.active
         });
         var strokeWidth = 4;
+        var position='translate(35,20)';
 
         return (
             <div className={backgroundClasses}>
-                <svg id="microphone-svg" className="test">
-                    <pattern x="-225.855" y="484.258" width="69" height="69" patternUnits="userSpaceOnUse" viewBox="2.125 -70.896 69 69" overflow="visible">
+                <svg id="microphone-svg">
+                    <circle className="bgCircle" cx="70" cy="70" r="60" stroke="black" strokeWidth="3" fill="#FFFFFF" />
+                    <pattern transform={position} x="-225.855" y="484.258" width="69" height="69" patternUnits="userSpaceOnUse" overflow="visible">
                         <g className="main">
                             <polygon fill="none" points="71.125 -1.896 2.125 -1.896 2.125 -70.896 71.125 -70.896 "/>
                             <polygon fill="#F7C158" points="71.125 -1.896 2.125 -1.896 2.125 -70.896 71.125 -70.896 "/>
@@ -28,15 +34,20 @@ class Microphone extends React.Component {
                             </g>
                         </g>
                     </pattern>
-                    <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="21.157" y1="95.807" x2="51.312" y2="95.807"/>
-                    <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="35.975" y1="84.109" x2="35.975" y2="93.727"/>
-                    <path fill="none" stroke="#000000" strokeWidth={strokeWidth} d="M60.145 39.869h9.19v10.582c0 18.457-14.962 33.418-33.417 33.418S2.5 68.908 2.5 50.451V39.369h9.145M35.917 17.034"/>
+                    <line transform={position} fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="21.157" y1="95.807" x2="51.312" y2="95.807"/>
+                    <line transform={position} fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="35.975" y1="84.109" x2="35.975" y2="93.727"/>
+                    <path transform={position} fill="none" stroke="#000000" strokeWidth={strokeWidth} d="M60.145 39.869h9.19v10.582c0 18.457-14.962 33.418-33.417 33.418S2.5 68.908 2.5 50.451V39.369h9.145M35.917 17.034"/>
 
-                    <g className="mainBody">
-                        <path fill="#FFFFFF" stroke="#000000" strokeWidth={strokeWidth} d="M12.578 31.098v-7.539c0 0 2.339-20.797 23.916-21.057S60.41 24.339 60.41 24.339l-0.26 31.715c0 0-5.459 19.496-23.916 20.016S12.578 55.793 12.578 55.793V31.098zM58.591 31.618"/><line fill="none" stroke="#000000" strokeWidth="5" x1="11.958" y1="31.877" x2="60.511" y2="31.877"/><line fill="none" stroke="#000000" strokeWidth="5" x1="20.377" y1="9.001" x2="20.377" y2="18.619"/><line fill="none" stroke="#000000" strokeWidth="5" x1="28.176" y1="3.542" x2="28.176" y2="18.099"/>
-                        <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="35.975" y1="3.802" x2="35.975" y2="18.359"/>
-                        <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="44.034" y1="3.802" x2="44.034" y2="18.359"/>
-                        <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="52.352" y1="8.742" x2="52.352" y2="18.359"/>
+                    <g transform={position}>
+                        <g className="mainBody">
+                            <path fill="#FFFFFF" stroke="#000000" strokeWidth={strokeWidth} d="M12.578 31.098v-7.539c0 0 2.339-20.797 23.916-21.057S60.41 24.339 60.41 24.339l-0.26 31.715c0 0-5.459 19.496-23.916 20.016S12.578 55.793 12.578 55.793V31.098zM58.591 31.618"/>
+                            <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="11.958" y1="31.877" x2="60.511" y2="31.877"/>
+                            <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="20.377" y1="9.001" x2="20.377" y2="18.619"/>
+                            <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="28.176" y1="3.542" x2="28.176" y2="18.099"/>
+                            <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="35.975" y1="3.802" x2="35.975" y2="18.359"/>
+                            <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="44.034" y1="3.802" x2="44.034" y2="18.359"/>
+                            <line fill="none" stroke="#000000" strokeWidth={strokeWidth} x1="52.352" y1="8.742" x2="52.352" y2="18.359"/>
+                        </g>
                     </g>
                 </svg>
                 <div className="Microphone"></div>
@@ -44,30 +55,56 @@ class Microphone extends React.Component {
         );
     }
 
-    componentDidMount() {
-        this._init(this.props)
+    componentWillReceiveProps(newProps) {
+        if(newProps.active !== this.props.active) {
+            if(newProps.active) this._activate();
+            if(!newProps.active) this._disable();
+        }
     }
 
-    _init(props) {
+    _activate() {
+        this.setState({
+            active: true
+        });
         this._animate();
+    }
+
+    _disable() {
+        this.setState({
+            active: false
+        });
     }
 
     _animate() {
         var angle = 28;
         var svg = Snap("#microphone-svg");
         var body = svg.select('.mainBody');
-        console.log("body", body);
+        var circle = svg.select('.bgCircle');
 
+        // Animate microphone body
         body.animate({
             transform:  'r' + angle +' 36 40',
-        }, 1000, mina.easein, function() {
+        }, 1000, mina.easein, () => {
             body.animate({
                 transform:  'r-' + angle + ' 36 40',
-            }, 1000, mina.easein, function() {
+            }, 1000, mina.easein, () => {
                 body.animate({
                     transform:  'r0 36 40',
-                }, 1000, mina.easein);
+                }, 1000, mina.easein, () => {
+                    console.log("active ? ", this.state.active);
+                    // Carry on playing while active
+                    if(this.state.active) {
+                        this._animate();
+                    }
+                });
+
             });
+        });
+
+        // Animate circle around it
+        SnapAnimator.pulse(circle, {
+            pulsations: 2,
+            duration: 3000
         });
     }
 
