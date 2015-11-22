@@ -19,7 +19,6 @@ const appState = Bacon.combineTemplate({
 });
 
 appState.onValue((state)=>{
-    console.log("state", state);
     ReactDOM.render(<Home {...state}/>, document.getElementById('main'));
 });
 
