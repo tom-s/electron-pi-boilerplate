@@ -21,6 +21,7 @@ class Microphone extends React.Component {
             if(listening) {
                 this._activate();
             } else {
+                console.log("not listening");
                 this._disable();
             }
         });
@@ -47,6 +48,7 @@ class Microphone extends React.Component {
     }
 
     _animate() {
+        var duration = 500;
         var angle = 28;
         var svg = Snap("#microphone-svg");
         var body = svg.select('.mainBody');
@@ -59,13 +61,13 @@ class Microphone extends React.Component {
         // Animate microphone body
         body.animate({
             transform:  'r' + angle +' 36 40',
-        }, 1000, mina.easein, () => {
+        }, duration, mina.easein, () => {
             body.animate({
                 transform:  'r-' + angle + ' 36 40',
-            }, 1000, mina.easein, () => {
+            }, duration, mina.easein, () => {
                 body.animate({
                     transform:  'r0 36 40',
-                }, 1000, mina.easein, () => {
+                }, duration, mina.easein, () => {
                     this.setState({
                         playing: false
                     });
@@ -81,8 +83,8 @@ class Microphone extends React.Component {
 
         // Animate circle around it
         SnapAnimator.pulse(circle, {
-            pulsations: 2,
-            duration: 3000
+            pulsations: 1,
+            duration: duration * 3
         });
     }
 

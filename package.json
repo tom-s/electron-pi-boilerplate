@@ -24,7 +24,6 @@
   "dependencies": {
     "async": "^1.4.2",
     "baconjs": "^0.7.82",
-    "bootstrap": "^3.3.5",
     "classnames": "^2.2.0",
     "imports-loader": "^0.6.5",
     "lodash": "^3.10.0",
