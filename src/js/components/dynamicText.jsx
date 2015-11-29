@@ -1,30 +1,31 @@
 import React from 'react'
+import Socket from '../utils/socket.js'
 
 class DynamicText extends React.Component {
     constructor(props) {
         super(props);
         this.timeout = null;
         this.state = {
+            'text': 'zzzzzzzzzzzzzzzzz...',
             'currentlyDisplayed': '',
             'currentLetterIndex': 0
         };
     }
 
     componentDidMount() {
-        this._tick(this.props);
-    }
+        this._tick(this.state.text);
 
-    componentWillReceiveProps(newProps) {
-        if(this.props.text !== newProps.text) {
+        Socket.on('speak', (data) => {
             window.clearTimeout(this.timeout);
             this.setState({
-                'currentlyDisplayed': '',
-                'currentLetterIndex': 0
-            }, function() {
-                this._tick(newProps);
+                text: data.text,
+                currentlyDisplayed: '',
+                currentLetterIndex: 0
+            }, () => {
+                this._tick(data.text);
             });
-        }
-     }
+        });
+    }
 
     render() {
         return (
@@ -34,17 +35,17 @@ class DynamicText extends React.Component {
         );
     }
 
-    _tick(props) {
-        var currentlyDisplayed = props.text.substr(0, this.state.currentLetterIndex);
+    _tick(text) {
+        var currentlyDisplayed = text.substr(0, this.state.currentLetterIndex);
         this.setState({
             currentlyDisplayed: currentlyDisplayed,
             currentLetterIndex: ++this.state.currentLetterIndex
         });
 
-        if(this.state.currentLetterIndex <= props.text.length) {
-            this.timeout = window.setTimeout(function() {
-                this._tick(props);
-            }.bind(this), 50);
+        if(this.state.currentLetterIndex <= text.length) {
+            this.timeout = window.setTimeout(() => {
+                this._tick(text);
+            }, 50);
         }
     }
 };

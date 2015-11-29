@@ -5,7 +5,7 @@ import _ from 'lodash'
 // Streams
 import TimerStream from '../streams/timer.js'
 
-class Clock extends React.Component {
+class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +21,7 @@ class Clock extends React.Component {
             });
         });
 
-       this._tick();
+        this._tick();
     }
 
     componentWillUnmount() {
@@ -44,7 +44,7 @@ class Clock extends React.Component {
     }
 
     _tick() {
-        window.setTimeout(() => {
+        window.setTimeout(function() => {
             this._tick();
         }, 500);
     }
@@ -53,4 +53,4 @@ class Clock extends React.Component {
 // Mixins
 //Clock = widgetMixin(Clock);
 
-export default Clock;
+export default Timer;

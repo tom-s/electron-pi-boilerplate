@@ -4,14 +4,14 @@ import React from 'react'
 import Clock from './clock.jsx'
 import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
-import Socket from './socket.jsx'
+import SocketStatus from './socketStatus.jsx'
+import Socket from '../utils/socket.js'
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'text': 'zzzzzzzzzzzzzzzzzz...',
-            'listening': false
+            'text': 'zzzzzzzzzzzzzzzzzz...'
         }
     }
 
@@ -22,15 +22,15 @@ class Home extends React.Component {
                     <Clock date={this.props.date}/>
                 </div>
                 <div className="Content">
-                    <div className="DynamicText-wrapper" onClick={this._test.bind(this)}>
+                    <div className="DynamicText-wrapper">
                         <DynamicText text={this.state.text}/>
                     </div>
                     <div className="Microphone-wrapper">
-                        <Microphone active={this.state.listening} />
+                        <Microphone/>
                     </div>
                 </div>
                 <div className="Socket-wrapper">
-                    <Socket />
+                    <SocketStatus />
                 </div>
             </div>
         );
@@ -44,26 +44,12 @@ class Home extends React.Component {
 
     }
 
-    _test() {
-        console.log("click");
-        this.setState({
-            text: 'Yes, Hester ?',
-            listening: !this.state.listening
-        })
-    }
 
     _wakeUp(data) {
         console.log('wake up', data);
          this.setState({
              text: 'Yes ?'
          });
-    }
-
-    _listenForOrder(data) {
-        console.log('listen for orders', data);
-        this.setState({
-            listening: true
-        });
     }
 };
 

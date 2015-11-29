@@ -5,7 +5,7 @@ import _ from 'lodash'
 // Streams
 import SocketStream from '../streams/socket.js'
 
-class Socket extends React.Component {
+class SocketStatus extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,11 +15,11 @@ class Socket extends React.Component {
 
     componentDidMount() {
         this.socketStream = new SocketStream();
-        this.socketStream.onValue(function(socket) {
+        this.socketStream.onValue((socket) => {
             this.setState({
                 connected: socket.connected
             });
-        }.bind(this));
+        });
     }
 
     componentWillUnmount() {
@@ -37,4 +37,4 @@ class Socket extends React.Component {
     }
 };
 
-export default Socket;
+export default SocketStatus;

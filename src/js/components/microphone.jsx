@@ -3,21 +3,25 @@ import React from 'react'
 import ClassNames from 'classnames'
 import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg'
 import SnapAnimator from '../utils/snapAnimator.js'
+import Socket from '../utils/socket.js'
 
 class Microphone extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             active: false,
-            playing: false
+            playing: false // currently playing ?
         }
     }
 
-    componentWillReceiveProps(newProps) {
-        if(newProps.active !== this.props.active) {
-            if(newProps.active) this._activate();
-            if(!newProps.active) this._disable();
-        }
+    componentDidMount() {
+        Socket.on('listening', () => {
+            this._activate();
+        });
+
+        Socket.on('notListening', () => {
+            this._disable();
+        })
     }
 
     _activate() {
@@ -76,6 +80,10 @@ class Microphone extends React.Component {
         });
     }
 
+    _listen() {
+        console.log("emit listen");
+        Socket.emit('listen');
+    }
 
     render() {
         var backgroundClasses = ClassNames({
@@ -87,7 +95,7 @@ class Microphone extends React.Component {
 
         return (
             <div className={backgroundClasses}>
-                <svg id="microphone-svg">
+                <svg id="microphone-svg" onClick={this._listen}>
                     <circle className="bgCircle" cx="70" cy="70" r="60" stroke="black" strokeWidth="3" fill="#FFFFFF" />
                     <pattern transform={position} x="-225.855" y="484.258" width="69" height="69" patternUnits="userSpaceOnUse" overflow="visible">
                         <g className="main">
@@ -114,7 +122,6 @@ class Microphone extends React.Component {
                         </g>
                     </g>
                 </svg>
-                <div className="Microphone"></div>
             </div>
         );
     }
