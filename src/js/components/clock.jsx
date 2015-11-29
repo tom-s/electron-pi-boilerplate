@@ -3,7 +3,7 @@ import React from 'react'
 import _ from 'lodash'
 
 // Streams
-import TimerStream from '../streams/timer.js'
+import TimerStream from '../streams/timerStream.js'
 
 class Clock extends React.Component {
     constructor(props) {

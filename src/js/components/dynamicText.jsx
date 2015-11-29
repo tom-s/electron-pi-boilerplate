@@ -1,30 +1,35 @@
 import React from 'react'
 import Socket from '../utils/socket.js'
+import SpeakStream from '../streams/speakStream.js'
 
 class DynamicText extends React.Component {
     constructor(props) {
         super(props);
         this.timeout = null;
         this.state = {
-            'text': 'zzzzzzzzzzzzzzzzz...',
+            'text': '',
             'currentlyDisplayed': '',
             'currentLetterIndex': 0
         };
     }
 
     componentDidMount() {
-        this._tick(this.state.text);
-
-        Socket.on('speak', (data) => {
+        this.speakStream = new SpeakStream();
+        this.speakStream.onValue((text) => {
+            console.log("value", text);
             window.clearTimeout(this.timeout);
             this.setState({
-                text: data.text,
+                text: text,
                 currentlyDisplayed: '',
                 currentLetterIndex: 0
             }, () => {
-                this._tick(data.text);
+                this._tick(text);
             });
         });
+    }
+
+    componentWillUnmount() {
+        this.speakStream();
     }
 
     render() {

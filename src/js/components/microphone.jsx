@@ -3,6 +3,7 @@ import React from 'react'
 import ClassNames from 'classnames'
 import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg'
 import SnapAnimator from '../utils/snapAnimator.js'
+import ListenStream from '../streams/listenStream.js'
 import Socket from '../utils/socket.js'
 
 class Microphone extends React.Component {
@@ -15,13 +16,18 @@ class Microphone extends React.Component {
     }
 
     componentDidMount() {
-        Socket.on('listening', () => {
-            this._activate();
+        this.listenStream = new ListenStream();
+        this.listenStream.onValue((listening) => {
+            if(listening) {
+                this._activate();
+            } else {
+                this._disable();
+            }
         });
+    }
 
-        Socket.on('notListening', () => {
-            this._disable();
-        })
+    componentWillUnmount() {
+        this.listenStream();
     }
 
     _activate() {

@@ -10,20 +10,18 @@ import Socket from '../utils/socket.js'
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            'text': 'zzzzzzzzzzzzzzzzzz...'
-        }
+        this.state = {}
     }
 
     render() {
         return (
             <div className="Home">
                 <div className="Clock-wrapper">
-                    <Clock date={this.props.date}/>
+                    <Clock/>
                 </div>
                 <div className="Content">
                     <div className="DynamicText-wrapper">
-                        <DynamicText text={this.state.text}/>
+                        <DynamicText/>
                     </div>
                     <div className="Microphone-wrapper">
                         <Microphone/>
@@ -34,22 +32,6 @@ class Home extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
-
-    _wakeUp(data) {
-        console.log('wake up', data);
-         this.setState({
-             text: 'Yes ?'
-         });
     }
 };
 
