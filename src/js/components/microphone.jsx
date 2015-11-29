@@ -21,7 +21,6 @@ class Microphone extends React.Component {
     }
 
     _activate() {
-        console.log("ACTIVATE !");
         this.setState({
             active: true
         });

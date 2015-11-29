@@ -4,6 +4,7 @@ import React from 'react'
 import Clock from './clock.jsx'
 import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
+import Socket from './socket.jsx'
 
 class Home extends React.Component {
     constructor(props) {
@@ -14,13 +15,7 @@ class Home extends React.Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        // We have constant streams from the timer clock, there is no need to render all the time
-        return this.props.date.getMinutes() !== nextProps.date.getMinutes() || nextState.text !== this.state.text || nextState.listening !== this.state.listening;
-    }
-
     render() {
-        console.log("home date is", this.props.date);
         return (
             <div className="Home">
                 <div className="Clock-wrapper">
@@ -34,13 +29,19 @@ class Home extends React.Component {
                         <Microphone active={this.state.listening} />
                     </div>
                 </div>
+                <div className="Socket-wrapper">
+                    <Socket />
+                </div>
             </div>
         );
     }
 
     componentDidMount() {
-        //this.socket.on('wakeUp', this._wakeUp.bind(this));
-        //this.socket.on('listenForOrder', this._listenForOrder.bind(this));
+
+    }
+
+    componentWillUnmount() {
+
     }
 
     _test() {

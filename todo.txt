@@ -1,0 +1,10 @@
+- faire fonctionner aplay sur le pc
+- faire que les events speak apparaissent
+- trigger listen on click (send socket io message) -> permettra de faire une appli mobile et aussi de tester plus facilement
+- faire l'intent finder pour les actions de base:
+> quelle heure est-il en nouvelle zelande
+> setter un timer qui dure X secondes
+> remind me to "" at
+> faire une recherche google
+> afficher
+
