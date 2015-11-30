@@ -21,15 +21,18 @@ class Home extends React.Component {
                     <Clock/>
                 </div>
                 <div className="Content">
-                    <div className="DynamicText-wrapper">
-                        <DynamicText/>
+
+                    <div className="Result-wrapper">
+                        <Result/>
                     </div>
                     <div className="Microphone-wrapper">
                         <Microphone/>
                     </div>
-                    <div className="Result-wrapper">
-                        <Result/>
-                    </div>
+                    {/*
+                    <div className="DynamicText-wrapper">
+                        <DynamicText/>
+                    </div> */}
+
                 </div>
                 <div className="Socket-wrapper">
                     <SocketStatus />
