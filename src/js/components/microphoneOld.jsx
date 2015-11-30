@@ -3,6 +3,7 @@ import React from 'react'
 import ClassNames from 'classnames'
 import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg'
 import SnapAnimator from '../utils/snapAnimator.js'
+import ListenStream from '../streams/listenStream.js'
 import Socket from '../utils/socket.js'
 
 class Microphone extends React.Component {
@@ -10,59 +11,20 @@ class Microphone extends React.Component {
         super(props);
         this.state = {
             active: false,
-            playing: false, // currently playing ?,
-            tempSpeech: '',
-            finalSpeech: ''
+            playing: false // currently playing ?
         }
     }
 
     componentDidMount() {
-        console.log("ask permission");
-        // Ask permission
-        this.recognition = new webkitSpeechRecognition();
-        this.recognition.continuous = false;
-        this.recognition.interimResults = true;
-        this.recognition.lang = 'en-GB';
-
-        this.recognition.onstart = function() {
-            console.log("start");
-        };
-
-        this.recognition.onerror = (event) => {
-            console.log("error");
-        };
-
-        this.recognition.onend = () => {
-            console.log("end");
-            this.setState({
-                active: false
-            });
-        };
-
-        this.recognition.onresult = (event) => {
-            var interim_transcript = '';
-            var final_transcript = '';
-            if (typeof(event.results) == 'undefined') {
-                this.recognition.onend = null;
-                this.recognition.stop();
-                return;
+        this.listenStream = new ListenStream();
+        this.listenStream.onValue((listening) => {
+            if(listening) {
+                this._activate();
+            } else {
+                console.log("not listening");
+                this._disable();
             }
-            for (var i = event.resultIndex; i < event.results.length; ++i) {
-                if (event.results[i].isFinal) {
-                    final_transcript += event.results[i][0].transcript;
-                } else {
-                    interim_transcript += event.results[i][0].transcript;
-                }
-            }
-
-            this.setState({
-                finalSpeech: final_transcript,
-                tempSpeech: interim_transcript
-            });
-
-            console.log('temp', interim_transcript);
-            console.log('final', final_transcript);
-        };
+        });
     }
 
     componentWillUnmount() {
@@ -70,8 +32,6 @@ class Microphone extends React.Component {
     }
 
     _activate() {
-        this.recognition.start();
-
         this.setState({
             active: true
         });
@@ -79,6 +39,12 @@ class Microphone extends React.Component {
         if(!this.state.playing){
             this._animate();
         }
+    }
+
+    _disable() {
+        this.setState({
+            active: false
+        });
     }
 
     _animate() {
@@ -122,6 +88,11 @@ class Microphone extends React.Component {
         });
     }
 
+    _listen() {
+        console.log("emit listen");
+        Socket.emit('listen');
+    }
+
     render() {
         var backgroundClasses = ClassNames({
             'Background': true,
@@ -132,7 +103,7 @@ class Microphone extends React.Component {
 
         return (
             <div className={backgroundClasses}>
-                <svg id="microphone-svg" onClick={this._activate.bind(this)}>
+                <svg id="microphone-svg" onClick={this._listen}>
                     <circle className="bgCircle" cx="70" cy="70" r="60" stroke="black" strokeWidth="3" fill="#FFFFFF" />
                     <pattern transform={position} x="-225.855" y="484.258" width="69" height="69" patternUnits="userSpaceOnUse" overflow="visible">
                         <g className="main">

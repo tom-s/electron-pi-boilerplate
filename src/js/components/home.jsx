@@ -1,11 +1,12 @@
 import React from 'react'
+import Socket from '../utils/socket.js'
 
 // Components
 import Clock from './clock.jsx'
 import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
 import SocketStatus from './socketStatus.jsx'
-import Socket from '../utils/socket.js'
+import SpeechToText from './speechToText.jsx'
 
 class Home extends React.Component {
     constructor(props) {
@@ -25,6 +26,9 @@ class Home extends React.Component {
                     </div>
                     <div className="Microphone-wrapper">
                         <Microphone/>
+                    </div>
+                    <div className="SpeechToText-wrapper">
+                        <SpeechToText/>
                     </div>
                 </div>
                 <div className="Socket-wrapper">
