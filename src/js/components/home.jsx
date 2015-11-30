@@ -5,13 +5,13 @@ import Socket from '../utils/socket.js'
 import Clock from './clock.jsx'
 import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
-import Result from './result.jsx'
+import Query from './query.jsx'
+import Response from './response.jsx'
 import SocketStatus from './socketStatus.jsx'
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
     }
 
     render() {
@@ -20,10 +20,9 @@ class Home extends React.Component {
                 <div className="Clock-wrapper">
                     <Clock/>
                 </div>
-                <div className="Content">
-
-                    <div className="Result-wrapper">
-                        <Result/>
+                <div className="Content clearfix">
+                    <div className="Query-wrapper">
+                        <Query/>
                     </div>
                     <div className="Microphone-wrapper">
                         <Microphone/>
@@ -34,6 +33,10 @@ class Home extends React.Component {
                     </div> */}
 
                 </div>
+                <div className="Response-wrapper">
+                    <Response/>
+                </div>
+
                 <div className="Socket-wrapper">
                     <SocketStatus />
                 </div>
@@ -44,10 +47,8 @@ class Home extends React.Component {
 
 // Props
 Home.propTypes = {
-    date: React.PropTypes.instanceOf(Date)
 };
 Home.defaultProps = {
-    date: new Date()
 };
 
 export default Home;

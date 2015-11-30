@@ -45,7 +45,7 @@ export default (function() {
 
     speechToText.start = function() {
         speechToText.recognition.start();
-    }
+    };
 
     speechToText.stream = Bacon.combineTemplate({
             active: speechToText.active,

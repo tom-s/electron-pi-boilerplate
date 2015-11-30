@@ -14,16 +14,17 @@
 
     .Content {
       padding: 10%;
+      padding-bottom: 0;
       width: 80%;
 
-      .Result-wrapper {
+      .Query-wrapper {
         width: 70%;
         float: left;
         min-height: 210px;
         font-size: 4em;
         display: table;
 
-        .Result {
+        .Query {
           display: table-cell;
           vertical-align: middle;
           text-align: center;
@@ -44,6 +45,10 @@
           cursor: pointer;
         }
       }
+    }
+
+    .Response-wrapper {
+      text-align: center;
     }
 
     .Socket-wrapper {

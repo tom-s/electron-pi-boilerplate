@@ -16,7 +16,6 @@ class DynamicText extends React.Component {
     componentDidMount() {
         this.speakStream = new SpeakStream();
         this.speakStream.onValue((text) => {
-            console.log("value", text);
             window.clearTimeout(this.timeout);
             this.setState({
                 text: text,

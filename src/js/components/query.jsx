@@ -8,7 +8,7 @@ import Socket from '../utils/socket.js'
 // Streams
 import SpeechToTextStream from '../streams/speechToTextStream.js'
 
-class Result extends React.Component {
+class Query extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,7 +18,6 @@ class Result extends React.Component {
 
     componentDidMount() {
         this.speechToTextStream = SpeechToTextStream;
-        console.log("this.speechToTextStream", this.speechToTextStream.stream);
         this.speechToTextStream.stream.onValue((data) => {
             var result = (data.result.final) ? data.result.final : data.result.temp;
             this.setState({
@@ -34,9 +33,8 @@ class Result extends React.Component {
 
 
     render() {
-
         return (
-            <div className="Result">
+            <div className="Query">
                 {this.state.result}
             </div>
         );
@@ -45,4 +43,4 @@ class Result extends React.Component {
 };
 
 
-export default Result;
+export default Query;

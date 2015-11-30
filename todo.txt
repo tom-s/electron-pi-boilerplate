@@ -1,6 +1,7 @@
-- faire fonctionner aplay sur le pc
-- faire que les events speak apparaissent
-- trigger listen on click (send socket io message) -> permettra de faire une appli mobile et aussi de tester plus facilement
+- améliorer le stream pour responseStream
+- régler pb de la requete qui se fait deux fois
+- faire parler quand j'obtiens la réponse
+- faire que l'appli écoute quand je claque dans les mains
 - faire l'intent finder pour les actions de base:
 > quelle heure est-il en nouvelle zelande
 > setter un timer qui dure X secondes
