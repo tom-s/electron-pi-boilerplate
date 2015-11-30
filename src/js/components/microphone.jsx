@@ -5,72 +5,35 @@ import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg'
 import SnapAnimator from '../utils/snapAnimator.js'
 import Socket from '../utils/socket.js'
 
+// Streams
+import SpeechToTextStream from '../streams/speechToTextStream.js'
+
 class Microphone extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             active: false,
-            playing: false, // currently playing ?,
-            tempSpeech: '',
-            finalSpeech: ''
+            playing: false // currently playing ?
         }
     }
 
     componentDidMount() {
-        console.log("ask permission");
-        // Ask permission
-        this.recognition = new webkitSpeechRecognition();
-        this.recognition.continuous = false;
-        this.recognition.interimResults = true;
-        this.recognition.lang = 'en-GB';
-
-        this.recognition.onstart = function() {
-            console.log("start");
-        };
-
-        this.recognition.onerror = (event) => {
-            console.log("error");
-        };
-
-        this.recognition.onend = () => {
-            console.log("end");
-            this.setState({
-                active: false
-            });
-        };
-
-        this.recognition.onresult = (event) => {
-            var interim_transcript = '';
-            var final_transcript = '';
-            if (typeof(event.results) == 'undefined') {
-                this.recognition.onend = null;
-                this.recognition.stop();
-                return;
-            }
-            for (var i = event.resultIndex; i < event.results.length; ++i) {
-                if (event.results[i].isFinal) {
-                    final_transcript += event.results[i][0].transcript;
-                } else {
-                    interim_transcript += event.results[i][0].transcript;
-                }
-            }
-
-            this.setState({
-                finalSpeech: final_transcript,
-                tempSpeech: interim_transcript
-            });
-
-            console.log('temp', interim_transcript);
-            console.log('final', final_transcript);
-        };
+        this.speechToTextStream = SpeechToTextStream;
     }
 
     componentWillUnmount() {
-        this.listenStream();
+        this.speechToTextStream.stream();
     }
 
     _activate() {
-        this.recognition.start();
+        this.speechToTextStream.start();
+        this.speechToTextStream.stream.onValue((data) => {
+            this.setState({
+                //finalSpeech: data.result.finalSpeech,
+                //tempSpeech: data.result.tempSpeech,
+                active: data.active
+            });
+        });
 
         this.setState({
             active: true
@@ -167,10 +130,8 @@ class Microphone extends React.Component {
 
 // Props
 Microphone.propTypes = {
-    active: React.PropTypes.bool
 };
 Microphone.defaultProps = {
-    active: false
 };
 
 export default Microphone;
