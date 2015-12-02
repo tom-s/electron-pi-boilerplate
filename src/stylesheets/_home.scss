@@ -14,26 +14,27 @@
     .Content {
       @include calc( height, '100% - 95px'); /* minus height of both bars */
       margin-top: 44px;
+      overflow-y: auto;
 
       .Query-wrapper {
         width: 70%;
         float: left;
-        min-height: 210px;
+        min-height: 150px;
         font-size: 4em;
         display: table;
 
         .Query {
           display: table-cell;
           vertical-align: middle;
-          text-align: center;
+          text-align: left;
+          font-size: 0.3em;
         }
       }
       .Microphone-wrapper {
         width: 30%;
         float: left;
-        height: 210px;
+        height: 150px;
         padding-top: 20px;
-        transform: scale(0.5);
 
         #microphone-svg {
           width: 150px;
@@ -42,14 +43,16 @@
           margin-top: 10px;
           transition: all 1s;
           cursor: pointer;
+          transform: scale(0.5);
+          transform-origin: 20px 20px;
         }
       }
-    }
 
-    .Response-wrapper {
-      text-align: center;
-      width: 80%;
-      margin: auto;
+      .Response-wrapper {
+        text-align: center;
+        width: 80%;
+        margin: auto;
+      }
     }
 
     .Socket-wrapper {
