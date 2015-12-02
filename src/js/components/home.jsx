@@ -8,6 +8,7 @@ import Microphone from './microphone.jsx'
 import Query from './query.jsx'
 import Response from './response.jsx'
 import SocketStatus from './socketStatus.jsx'
+import TabBar from './tabBar.jsx'
 
 class Home extends React.Component {
     constructor(props) {
@@ -17,9 +18,13 @@ class Home extends React.Component {
     render() {
         return (
             <div className="Home">
-                <div className="Clock-wrapper">
-                    <Clock/>
-                </div>
+                <header className="bar bar-nav">
+                    <h1 className="title">Thomster</h1>
+                    <div className="Clock-wrapper">
+                        <Clock/>
+                    </div>
+                </header>
+
                 <div className="Content clearfix">
                     <div className="Query-wrapper">
                         <Query/>
@@ -27,19 +32,20 @@ class Home extends React.Component {
                     <div className="Microphone-wrapper">
                         <Microphone/>
                     </div>
-                    {/*
-                    <div className="DynamicText-wrapper">
-                        <DynamicText/>
-                    </div> */}
-
-                </div>
-                <div className="Response-wrapper">
-                    <Response/>
+                    <div className="Response-wrapper">
+                        <Response/>
+                    </div>
                 </div>
 
+
+                {/* Footer */}
+                <TabBar/>
+
+                {/*
                 <div className="Socket-wrapper">
                     <SocketStatus />
                 </div>
+                */}
             </div>
         );
     }

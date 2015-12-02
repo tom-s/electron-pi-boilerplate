@@ -1,21 +1,19 @@
 #main {
-
+  height: 100%;
 
   .Home {
     font-family: 'claire_handregular', sans-serif;
     position: relative;
+    height: 100%;
 
     .Clock-wrapper {
-      position: fixed;
-      top: 30px;
-      right: 50px;
-      font-size: 4em;
+      padding: 10px;
+      text-align: right;
     }
 
     .Content {
-      padding: 10%;
-      padding-bottom: 0;
-      width: 80%;
+      @include calc( height, '100% - 95px'); /* minus height of both bars */
+      margin-top: 44px;
 
       .Query-wrapper {
         width: 70%;

@@ -4,6 +4,11 @@
 /* Import specific stylessheets */
 @import 'home';
 @import 'fonts';
+
+/* Vendors */
+@import 'vendors/ratchet';
+/* @import 'vendors/ratchet-theme-android'; */
+
 /* Generic style */
 .html, body {
   background-color: #FFFFFF;
