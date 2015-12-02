@@ -26,15 +26,15 @@ class Home extends React.Component {
                 </header>
 
                 <div className="Content clearfix">
-                    <div className="Query-wrapper">
-                        <Query/>
-                    </div>
                     <div className="Microphone-wrapper">
                         <Microphone/>
                     </div>
-                    <div className="Response-wrapper">
-                        <Response/>
+                    <div className="Query-wrapper">
+                        <Query/>
                     </div>
+                </div>
+                <div className="Response-wrapper">
+                    <Response/>
                 </div>
 
 
