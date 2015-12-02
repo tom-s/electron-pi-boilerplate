@@ -1,13 +1,11 @@
 
 import React from 'react'
-import ClassNames from 'classnames'
+import classnames from 'classnames'
 
 class TabBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            response: ''
-        }
+        this.state = {}
     }
 
     componentDidMount() {
@@ -28,28 +26,32 @@ class TabBar extends React.Component {
     }
 
     render() {
+        var tools = [
+            {
+                icon: 'icon-person',
+                label: 'Profile'
+            }
+        ]; // temp
+
+        var tabs = _.map(tools, function(tool, i) {
+            var classes = classnames({
+                'tab-item': true,
+            });
+            return (
+                <a className={classes} href="#" key={'tab' + i}>
+                    <span className="icon icon-person"></span>
+                    <span className="tab-label">{tool.label}</span>
+                </a>
+            )
+        });
+
         return (
             <nav className="bar bar-tab">
                 <a className="tab-item active" href="#">
                     <span className="icon icon-home"></span>
                     <span className="tab-label">Home</span>
                 </a>
-                <a className="tab-item" href="#">
-                    <span className="icon icon-person"></span>
-                    <span className="tab-label">Profile</span>
-                </a>
-                <a className="tab-item" href="#">
-                    <span className="icon icon-star-filled"></span>
-                    <span className="tab-label">Favorites</span>
-                </a>
-                <a className="tab-item" href="#">
-                    <span className="icon icon-search"></span>
-                    <span className="tab-label">Search</span>
-                </a>
-                <a className="tab-item" href="#">
-                    <span className="icon icon-gear"></span>
-                    <span className="tab-label">Settings</span>
-                </a>
+                {tabs}
             </nav>
         );
     }
