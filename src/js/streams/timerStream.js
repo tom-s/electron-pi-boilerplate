@@ -1,11 +1,9 @@
 
-import Bacon from 'baconjs'
+import Rx from 'rx'
 
 export default class TimerStream {
     constructor() {
-        return Bacon.once().merge(Bacon.interval(300)).map(() => {
-            return new Date();
-        });
+        return Rx.Observable.timer(0, 300).map(time => new Date())
     }
 }
 

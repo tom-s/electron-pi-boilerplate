@@ -34,7 +34,7 @@ class Query extends React.Component {
 
     render() {
         return (
-            <div className="Query">
+            <div className="Query" contentEditable={true}>
                 {this.state.result}
             </div>
         );

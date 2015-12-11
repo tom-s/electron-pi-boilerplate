@@ -1,4 +1,4 @@
-- ajouter ratchet
+
 - améliorer le stream pour responseStream
 - régler pb de la requete qui se fait deux fois
 - faire parler quand j'obtiens la réponse
