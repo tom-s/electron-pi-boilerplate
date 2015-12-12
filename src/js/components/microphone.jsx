@@ -21,7 +21,7 @@ class Microphone extends React.Component {
     }
 
     componentWillUnmount() {
-        //this.speechToTextStream.stream.dispose();
+        this.speechToTextStream.stream.dispose();
     }
 
     _activate() {

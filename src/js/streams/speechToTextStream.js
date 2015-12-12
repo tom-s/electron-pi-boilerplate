@@ -16,13 +16,9 @@ export default (function() {
     var error = Rx.Observable.fromEvent(speechToText.recognition, 'error');
     var end = Rx.Observable.fromEvent(speechToText.recognition, 'end');
     var result = Rx.Observable.fromEvent(speechToText.recognition, 'result');
-    speechToText.active = Rx.Observable.just(false).merge(start.map(true), error.map(false), end.map(false));
+    speechToText.active = Rx.Observable.merge(start.map(true), error.map(false), end.map(false)).startWith(false);
 
-    speechToText.result = Rx.Observable.just({
-        finalSpeech: '',
-        tempSpeech: '',
-        active: false
-    }).merge(result.map((event) => {
+    speechToText.result = result.map((event) => {
         var tempTranscript = '';
         var finalTranscript = '';
 
@@ -43,7 +39,11 @@ export default (function() {
             temp: tempTranscript,
             final: finalTranscript
         }
-    }));
+    }).startWith({
+        finalSpeech: '',
+        tempSpeech: '',
+        active: false
+    });
 
 
     speechToText.start = function() {

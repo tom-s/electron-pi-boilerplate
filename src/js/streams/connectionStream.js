@@ -6,7 +6,7 @@ export default class ConnectionStream {
         var connections =  Rx.Observable.fromEvent(socket, 'connect');
         var disconnections =  Rx.Observable.fromEvent(socket, 'disconnect');
 
-        return Rx.Observable.just(false).merge(connections.map(true), disconnections.map(false));
+        return Rx.Observable.merge(connections.map(true), disconnections.map(false)).startWith(false);
     }
 }
 

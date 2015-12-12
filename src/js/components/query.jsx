@@ -30,7 +30,7 @@ class Query extends React.Component {
     }
 
     componentWillUnmount() {
-        //this.speechToTextStream.stream.dispose();
+        this.speechToTextStream.stream.dispose();
     }
 
 
