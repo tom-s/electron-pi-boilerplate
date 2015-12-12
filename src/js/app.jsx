@@ -2,7 +2,6 @@ require('../stylesheets/styles.scss');
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Bacon from 'baconjs'
 
 // Components
 import Home from './components/home.jsx'

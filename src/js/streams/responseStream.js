@@ -9,7 +9,7 @@ export default class ResponseStream {
     constructor() {
         var speechStream = SpeechToTextStream.stream;
 
-        return speechStream.filter(this._filter).flatMap(this._fetchResponse).map(response => {
+        return speechStream.filter(this._filter).debounce(200).flatMapLatest(this._fetchResponse).map(response => {
            return response.body;
         })
     }
