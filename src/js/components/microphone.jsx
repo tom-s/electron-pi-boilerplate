@@ -27,7 +27,6 @@ class Microphone extends React.Component {
     _activate() {
         this.speechToTextStream.start();
         this.speechToTextStream.stream.subscribe((data) => {
-            console.log("data", data);
             this.setState({
                 active: data.active
             });

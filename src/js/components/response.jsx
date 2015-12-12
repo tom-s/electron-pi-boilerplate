@@ -67,7 +67,7 @@ Response.propTypes = {
 };
 Response.defaultProps = {
     wrapperId: '',
-    minFontSize: 12,
+    minFontSize: 10,
     maxFontSize: 50
 };
 

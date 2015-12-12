@@ -5,8 +5,9 @@ import request from 'superagent'
 // Streams
 import SpeechToTextStream from './speechToTextStream.js'
 
-// Utils
-import Time from '../utils/time.js'
+// Actions
+import Time from './actions/time.js'
+import Wikipedia from './actions/wikipedia.js'
 
 export default class ResponseStream {
     constructor() {
@@ -24,6 +25,7 @@ export default class ResponseStream {
     }
 
     _handleResponse(response) {
+        console.log("response", response);
         var speech = _.get(response, 'body.result.speech');
         if(speech) {
             return  Rx.Observable.just(speech);
@@ -38,10 +40,12 @@ export default class ResponseStream {
     }
 
     _handleAction(action, parameters) {
-        console.log("handle action", action, parameters);
         switch(action) {
-            case 'clock.time' :
+            case 'clock.time':
                 return Rx.Observable.fromPromise(Time.getTimeByLocation(parameters.location));
+            case 'web.search':
+                return Rx.Observable.fromPromise(Wikipedia.search(parameters.q));
+            default: return Rx.Observable.just(null);
         }
     }
 
