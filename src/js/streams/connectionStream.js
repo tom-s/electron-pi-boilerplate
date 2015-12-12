@@ -1,12 +1,12 @@
-import Bacon from 'baconjs'
+import Rx from 'rx'
 import socket from '../utils/socket.js'
 
 export default class ConnectionStream {
     constructor() {
-        var connections =  Bacon.fromEventTarget(socket, 'connect');
-        var disconnections =  Bacon.fromEventTarget(socket, 'disconnect');
+        var connections =  Rx.Observable.fromEvent(socket, 'connect');
+        var disconnections =  Rx.Observable.fromEvent(socket, 'disconnect');
 
-        return Bacon.once(false).merge(connections.map(true).merge(disconnections.map(false)))
+        return Rx.Observable.just(false).merge(connections.map(true), disconnections.map(false));
     }
 }
 

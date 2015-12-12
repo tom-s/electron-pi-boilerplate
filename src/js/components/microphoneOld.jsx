@@ -17,7 +17,8 @@ class Microphone extends React.Component {
 
     componentDidMount() {
         this.listenStream = new ListenStream();
-        this.listenStream.onValue((listening) => {
+        this.listenStream.subscribe((listening) => {
+            console.log("listening");
             if(listening) {
                 this._activate();
             } else {
@@ -28,7 +29,7 @@ class Microphone extends React.Component {
     }
 
     componentWillUnmount() {
-        this.listenStream();
+        this.dispose();
     }
 
     _activate() {

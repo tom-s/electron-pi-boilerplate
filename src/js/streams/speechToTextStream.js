@@ -1,4 +1,4 @@
-import Bacon from 'baconjs'
+import Rx from 'rx'
 import socket from '../utils/socket.js'
 
 /* This is a singleton because stream need to  be controlled by shared components */
@@ -12,13 +12,17 @@ export default (function() {
     speechToText.recognition.lang = 'en-GB';
 
     // Define streams
-    var start = Bacon.fromEventTarget(speechToText.recognition, 'start');
-    var error = Bacon.fromEventTarget(speechToText.recognition, 'error');
-    var end = Bacon.fromEventTarget(speechToText.recognition, 'end');
-    var result = Bacon.fromEventTarget(speechToText.recognition, 'result');
+    var start = Rx.Observable.fromEvent(speechToText.recognition, 'start');
+    var error = Rx.Observable.fromEvent(speechToText.recognition, 'error');
+    var end = Rx.Observable.fromEvent(speechToText.recognition, 'end');
+    var result = Rx.Observable.fromEvent(speechToText.recognition, 'result');
+    speechToText.active = Rx.Observable.just(false).merge(start.map(true), error.map(false), end.map(false));
 
-    speechToText.active = Bacon.once(false).merge(start.map(true).merge(error.map(false)).merge(end.map(false)));
-    speechToText.result = Bacon.once({finalSpeech: '', tempSpeech: '', active: false}).merge(result.map((event) => {
+    speechToText.result = Rx.Observable.just({
+        finalSpeech: '',
+        tempSpeech: '',
+        active: false
+    }).merge(result.map((event) => {
         var tempTranscript = '';
         var finalTranscript = '';
 
@@ -37,8 +41,7 @@ export default (function() {
 
         return {
             temp: tempTranscript,
-            final: finalTranscript,
-            active: false
+            final: finalTranscript
         }
     }));
 
@@ -47,9 +50,11 @@ export default (function() {
         speechToText.recognition.start();
     };
 
-    speechToText.stream = Bacon.combineTemplate({
-            active: speechToText.active,
-            result: speechToText.result
+    speechToText.stream = Rx.Observable.combineLatest(speechToText.active, speechToText.result, (active, result) => {
+        return {
+            active: active,
+            result: result
+        }
     });
 
     return speechToText;

@@ -18,7 +18,7 @@ class Response extends React.Component {
 
     componentDidMount() {
         this.responseStream = new ResponseStream();
-        this.responseStream.onValue((data) => {
+        this.responseStream.subscribe((data) => {
             console.log("data.result", data.result);
             if(data.result.speech) {
                 this.setState({
@@ -29,7 +29,7 @@ class Response extends React.Component {
     }
 
     componentWillUnmount() {
-        this.responseStream();
+        this.responseStream.dispose();
     }
 
     render() {

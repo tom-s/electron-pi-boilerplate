@@ -16,7 +16,6 @@ class Clock extends React.Component {
     componentDidMount() {
         this.timerStream = new TimerStream();
         this.timerStream.subscribe((date) => {
-            console.log("date", date);
             this.setState({
                 date: date
             });

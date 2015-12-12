@@ -3,7 +3,6 @@ import React from 'react'
 import ClassNames from 'classnames'
 import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg'
 import SnapAnimator from '../utils/snapAnimator.js'
-import Socket from '../utils/socket.js'
 
 // Streams
 import SpeechToTextStream from '../streams/speechToTextStream.js'
@@ -22,12 +21,13 @@ class Microphone extends React.Component {
     }
 
     componentWillUnmount() {
-        this.speechToTextStream.stream();
+        //this.speechToTextStream.stream.dispose();
     }
 
     _activate() {
         this.speechToTextStream.start();
-        this.speechToTextStream.stream.onValue((data) => {
+        this.speechToTextStream.stream.subscribe((data) => {
+            console.log("data", data);
             this.setState({
                 active: data.active
             });

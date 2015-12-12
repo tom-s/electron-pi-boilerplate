@@ -18,7 +18,10 @@ class Query extends React.Component {
 
     componentDidMount() {
         this.speechToTextStream = SpeechToTextStream;
-        this.speechToTextStream.stream.onValue((data) => {
+
+
+        this.speechToTextStream.stream.subscribe((data) => {
+            console.log("data", data);
             var result = (data.result.final) ? data.result.final : data.result.temp;
             this.setState({
                 result: result
@@ -27,7 +30,7 @@ class Query extends React.Component {
     }
 
     componentWillUnmount() {
-        this.speechToTextStream.stream();
+        //this.speechToTextStream.stream.dispose();
     }
 
 

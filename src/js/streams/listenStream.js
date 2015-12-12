@@ -1,11 +1,11 @@
-import Bacon from 'baconjs'
+import Rx from 'rx'
 import socket from '../utils/socket.js'
 
 export default class ListenStream {
     constructor() {
-        var listening =  Bacon.fromEventTarget(socket, 'listening');
-        var notListening =  Bacon.fromEventTarget(socket, 'notListening');
+        var listening =  Rx.Observable.fromEvent(socket, 'listening');
+        var notListening =  Rx.Observable.fromEvent(socket, 'notListening');
 
-        return Bacon.once(false).merge(listening.map(true).merge(notListening.map(false)))
+        return Rx.Observable.merge(listening.map(true), notListening.map(false));
     }
 }

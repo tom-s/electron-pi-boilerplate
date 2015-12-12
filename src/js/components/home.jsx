@@ -42,11 +42,11 @@ class Home extends React.Component {
                 {/* Footer */}
                 <TabBar/>
 
-                {/*
+                {
                 <div className="Socket-wrapper">
                     <SocketStatus />
                 </div>
-                */}
+                }
             </div>
         );
     }
