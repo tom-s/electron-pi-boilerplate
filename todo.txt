@@ -1,11 +1,9 @@
-
-- régler pb de la requete qui se fait deux fois
+- quelle heure est-il en nouvelle zelande
 - faire parler quand j'obtiens la réponse
 - faire que l'appli écoute quand je claque dans les mains
 - faire l'intent finder pour les actions de base:
-> quelle heure est-il en nouvelle zelande
+
 > setter un timer qui dure X secondes
 > remind me to "" at
 > faire une recherche google
-> afficher
 

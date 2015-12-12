@@ -19,9 +19,7 @@ class Query extends React.Component {
     componentDidMount() {
         this.speechToTextStream = SpeechToTextStream;
 
-
         this.speechToTextStream.stream.subscribe((data) => {
-            console.log("data", data);
             var result = (data.result.final) ? data.result.final : data.result.temp;
             this.setState({
                 result: result
@@ -33,11 +31,9 @@ class Query extends React.Component {
         this.speechToTextStream.stream.dispose();
     }
 
-
-
     render() {
         return (
-            <div className="Query" contentEditable={true}>
+            <div className="Query">
                 {this.state.result}
             </div>
         );

@@ -18,10 +18,11 @@ class Response extends React.Component {
 
     componentDidMount() {
         this.responseStream = new ResponseStream();
-        this.responseStream.subscribe((data) => {
-            if(data.result.speech) {
+        this.responseStream.subscribe((response) => {
+            console.log("response", response);
+            if(response) {
                 this.setState({
-                   response: data.result.speech
+                   response: response
                 }, this._resize);
             }
         });
@@ -48,11 +49,9 @@ class Response extends React.Component {
         var textHeight;
         var textWidth;
         do {
-            console.log("fontsize", fontSize);
             response.style.fontSize = fontSize + 'px';
             response.style.lineHeight = (fontSize * 1.5) + 'px';
             textHeight = response.offsetHeight;
-            console.log("textHeight", textHeight);
             textWidth = response.offsetWidth;
             fontSize = fontSize - 1;
         } while ((textHeight > maxHeight || textWidth > maxWidth) && fontSize > this.props.minFontSize);
@@ -62,7 +61,7 @@ class Response extends React.Component {
 
 // Props
 Response.propTypes = {
-    wrapperId: React.PropTypes.String,
+    wrapperId: React.PropTypes.string,
     minFontSize: React.PropTypes.number,
     maxFontSize: React.PropTypes.number
 };

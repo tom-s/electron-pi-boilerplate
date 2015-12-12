@@ -5,18 +5,44 @@ import request from 'superagent'
 // Streams
 import SpeechToTextStream from './speechToTextStream.js'
 
+// Utils
+import Time from '../utils/time.js'
+
 export default class ResponseStream {
     constructor() {
         var speechStream = SpeechToTextStream.stream;
 
-        return speechStream.filter(this._filter).debounce(200).flatMapLatest(this._fetchResponse).map(response => {
-           return response.body;
-        })
+        return speechStream.filter(this._filter).debounce(200).flatMapLatest(this._fetchResponse).flatMapLatest(this._handleResponse.bind(this)).map((res) => {
+            console.log("RES", res);
+            return res;
+        }).publish().refCount();
     }
 
     _filter(data) {
         var text = _.get(data, 'result.final');
         return !!text;
+    }
+
+    _handleResponse(response) {
+        var speech = _.get(response, 'body.result.speech');
+        if(speech) {
+            return  Rx.Observable.just(speech);
+        } else {
+            var action = _.get(response, 'body.result.action');
+            var parameters = _.get(response, 'body.result.parameters');
+            if(action) {
+                return this._handleAction(action, parameters);
+            }
+        }
+        return null
+    }
+
+    _handleAction(action, parameters) {
+        console.log("handle action", action, parameters);
+        switch(action) {
+            case 'clock.time' :
+                return Rx.Observable.fromPromise(Time.getTimeByLocation(parameters.location));
+        }
     }
 
     _fetchResponse(data) {
