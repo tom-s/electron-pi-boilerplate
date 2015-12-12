@@ -32,8 +32,8 @@ class Home extends React.Component {
                     <div className="Query-wrapper">
                         <Query/>
                     </div>
-                    <div className="Response-wrapper">
-                        <Response/>
+                    <div id="ResponseWrapper" className="Response-wrapper">
+                        <Response wrapperId="ResponseWrapper"/>
                     </div>
                 </div>
 

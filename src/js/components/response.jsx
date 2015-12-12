@@ -19,11 +19,10 @@ class Response extends React.Component {
     componentDidMount() {
         this.responseStream = new ResponseStream();
         this.responseStream.subscribe((data) => {
-            console.log("data.result", data.result);
             if(data.result.speech) {
                 this.setState({
                    response: data.result.speech
-                });
+                }, this._resize);
             }
         });
     }
@@ -34,13 +33,43 @@ class Response extends React.Component {
 
     render() {
         return (
-            <div className="Response">
+            <div id="response" className="Response">
                 {this.state.response}
             </div>
         );
     }
 
+    _resize() {
+        var response = document.getElementById('response');
+        var parent = document.getElementById(this.props.wrapperId);
+        var maxHeight = parent.offsetHeight - 200;
+        var maxWidth = parent.offsetWidth;
+        var fontSize = this.props.maxFontSize;
+        var textHeight;
+        var textWidth;
+        do {
+            console.log("fontsize", fontSize);
+            response.style.fontSize = fontSize + 'px';
+            response.style.lineHeight = (fontSize * 1.5) + 'px';
+            textHeight = response.offsetHeight;
+            console.log("textHeight", textHeight);
+            textWidth = response.offsetWidth;
+            fontSize = fontSize - 1;
+        } while ((textHeight > maxHeight || textWidth > maxWidth) && fontSize > this.props.minFontSize);
+    }
+
 };
 
+// Props
+Response.propTypes = {
+    wrapperId: React.PropTypes.String,
+    minFontSize: React.PropTypes.number,
+    maxFontSize: React.PropTypes.number
+};
+Response.defaultProps = {
+    wrapperId: '',
+    minFontSize: 12,
+    maxFontSize: 40
+};
 
 export default Response;

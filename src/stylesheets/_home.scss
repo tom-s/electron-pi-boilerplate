@@ -19,7 +19,7 @@
       .Query-wrapper {
         width: 65%;
         float: left;
-        min-height: 150px;
+        height: 150px;
         font-size: 4em;
         display: table;
 
@@ -53,6 +53,10 @@
         text-align: center;
         width: 80%;
         margin: auto;
+        position: absolute;
+        top: 245px;
+        @include calc( height, '100% - 44px - 150px'); /* minus height of both bars */
+        left: 10%;
       }
     }
 
