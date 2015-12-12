@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Bacon from 'baconjs'
+import Rx from 'rx'
 import request from 'superagent'
 
 // Streams
@@ -21,7 +21,7 @@ export default class ResponseStream {
 
     _fetchResponse(data) {
         var text = _.get(data, 'result.final');
-        return Bacon.fromPromise(
+        return Rx.Observable.fromPromise(
             request
                 .post('https://api.api.ai/v1/query')
                 .send({
