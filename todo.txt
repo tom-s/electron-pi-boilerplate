@@ -1,7 +1,6 @@
 - faire l'intent finder pour les actions de base:
 > setter un timer qui dure X secondes
 > remind me to "" at
-> faire une recherche google
 
 - faire parler quand j'obtiens la réponse
 - faire que l'appli écoute quand je claque dans les mains

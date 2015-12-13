@@ -13,7 +13,11 @@ export default class ResponseStream {
     constructor() {
         var speechStream = SpeechToTextStream.stream;
 
-        return speechStream.filter(this._filter).debounce(200).flatMapLatest(this._fetchResponse).flatMapLatest(this._handleResponse.bind(this)).map((res) => {
+        // just added the scan, check if it works
+        return speechStream.filter(this._filter).scan(data => {
+            var text = _.get(data, 'result.final');
+            return text;
+        }).flatMapLatest(this._fetchResponse).flatMapLatest(this._handleResponse.bind(this)).map((res) => {
             console.log("RES", res);
             return res;
         }).publish().refCount();
@@ -25,7 +29,6 @@ export default class ResponseStream {
     }
 
     _handleResponse(response) {
-        console.log("response", response);
         var speech = _.get(response, 'body.result.speech');
         if(speech) {
             return  Rx.Observable.just(speech);
@@ -50,6 +53,7 @@ export default class ResponseStream {
     }
 
     _fetchResponse(data) {
+        console.log("fethc response for data", data);
         var text = _.get(data, 'result.final');
         return Rx.Observable.fromPromise(
             request
