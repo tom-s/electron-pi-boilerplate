@@ -7,6 +7,7 @@ import striptags from 'striptags'
 export default (function() {
 
     function _search(query) {
+        query = query.toLowerCase();
         var deferred = Q.defer();
         request
             .get('https://en.wikipedia.org/w/api.php')

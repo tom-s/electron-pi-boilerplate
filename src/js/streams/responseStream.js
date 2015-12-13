@@ -14,10 +14,7 @@ export default class ResponseStream {
         var speechStream = SpeechToTextStream.stream;
 
         // just added the scan, check if it works
-        return speechStream.filter(this._filter).scan(data => {
-            var text = _.get(data, 'result.final');
-            return text;
-        }).flatMapLatest(this._fetchResponse).flatMapLatest(this._handleResponse.bind(this)).map((res) => {
+        return speechStream.filter(this._filter).flatMapLatest(this._fetchResponse).flatMapLatest(this._handleResponse.bind(this)).map((res) => {
             console.log("RES", res);
             return res;
         }).publish().refCount();
