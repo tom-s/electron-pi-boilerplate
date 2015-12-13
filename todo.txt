@@ -1,3 +1,4 @@
+- régler pb de case avec wikipedia
 - faire l'intent finder pour les actions de base:
 > setter un timer qui dure X secondes
 > remind me to "" at

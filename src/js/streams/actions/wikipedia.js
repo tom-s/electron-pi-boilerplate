@@ -6,8 +6,8 @@ import striptags from 'striptags'
 
 export default (function() {
 
-    function _search(query) {
-        query = query.toLowerCase();
+    function _search(search) {
+        search = search.toLowerCase();
         var deferred = Q.defer();
         request
             .get('https://en.wikipedia.org/w/api.php')
@@ -16,7 +16,7 @@ export default (function() {
             .query({format: 'json'})
             .query({prop: 'extracts'})
             .query({exintro: ''})
-            .query({titles: query})
+            .query({titles: search})
             .end(function (err, response) {
                 if(err) {
                     deferred.reject();

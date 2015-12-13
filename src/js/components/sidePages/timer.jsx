@@ -3,7 +3,7 @@ import React from 'react'
 import _ from 'lodash'
 
 // Streams
-import TimerStream from '../streams/timer.js'
+import TimerStream from '../../streams/timerStream.js'
 
 class Timer extends React.Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class Timer extends React.Component {
 
     componentDidMount() {
         this.timerStream = new TimerStream();
-        this.timerStream.onValue((date) => {
+        this.timerStream.subscribe((date) => {
             this.setState({
                 date: date
             });
@@ -25,7 +25,7 @@ class Timer extends React.Component {
     }
 
     componentWillUnmount() {
-        this.timerStream();
+        this.timerStream.dispose();
     }
 
     render() {
@@ -44,7 +44,7 @@ class Timer extends React.Component {
     }
 
     _tick() {
-        window.setTimeout(function() => {
+        window.setTimeout(() => {
             this._tick();
         }, 500);
     }

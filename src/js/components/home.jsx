@@ -9,10 +9,20 @@ import Query from './query.jsx'
 import Response from './response.jsx'
 import SocketStatus from './socketStatus.jsx'
 import TabBar from './tabBar.jsx'
+import SidePage from './sidePage.jsx'
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            sidePageType: null
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            sidePageType: 'timer'
+        });
     }
 
     render() {
@@ -25,19 +35,24 @@ class Home extends React.Component {
                     </div>
                 </header>
 
-                <div className="Content clearfix">
-                    <div className="Microphone-wrapper">
-                        <Microphone/>
-                    </div>
-                    <div className="Query-wrapper">
-                        <Query/>
-                    </div>
-                    <div id="ResponseWrapper" className="Response-wrapper">
-                        <Response wrapperId="ResponseWrapper"/>
+                <div className="Content clearfix slider">
+                    <div className="slide-group">
+                        <div className="slide MainContent">
+                            <div className="Microphone-wrapper">
+                                <Microphone/>
+                            </div>
+                            <div className="Query-wrapper">
+                                <Query/>
+                            </div>
+                            <div id="ResponseWrapper" className="Response-wrapper">
+                                <Response wrapperId="ResponseWrapper"/>
+                            </div>
+                        </div>
+                        <div className="slide SideContent">
+                            <SidePage type={this.state.sidePageType} />
+                        </div>
                     </div>
                 </div>
-
-
 
                 {/* Footer */}
                 <TabBar/>
