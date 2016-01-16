@@ -1,4 +1,5 @@
 - régler pb de case avec wikipedia
+- régler pb affichage texte
 - faire l'intent finder pour les actions de base:
 > setter un timer qui dure X secondes
 > remind me to "" at
@@ -8,4 +9,5 @@
 
 
 - améliorer time.js pour qu'il utilise les streams
+- utiliser les streams pour mes appels ajax
 

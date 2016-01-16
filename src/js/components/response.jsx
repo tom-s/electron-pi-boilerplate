@@ -19,7 +19,6 @@ class Response extends React.Component {
     componentDidMount() {
         this.responseStream = new ResponseStream();
         this.responseStream.subscribe((response) => {
-            console.log("response", response);
             if(response) {
                 this.setState({
                    response: response
@@ -43,17 +42,21 @@ class Response extends React.Component {
     _resize() {
         var response = document.getElementById('response');
         var parent = document.getElementById(this.props.wrapperId);
-        var maxHeight = parent.offsetHeight - 200;
+        var maxHeight = parent.offsetHeight;
         var maxWidth = parent.offsetWidth;
         var fontSize = this.props.maxFontSize;
         var textHeight;
         var textWidth;
+        console.log("resize for response", response);
+
         do {
+          
             response.style.fontSize = fontSize + 'px';
             response.style.lineHeight = (fontSize * 1.5) + 'px';
             textHeight = response.offsetHeight;
             textWidth = response.offsetWidth;
             fontSize = fontSize - 1;
+            console.log(textWidth, " > ", maxWidth, "?");
         } while ((textHeight > maxHeight || textWidth > maxWidth) && fontSize > this.props.minFontSize);
     }
 

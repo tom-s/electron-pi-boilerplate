@@ -73,6 +73,10 @@
         top: 150px;
         @include calc( height, '100% - 44px - 150px'); /* minus height of both bars */
         left: 10%;
+
+        .Response {
+          white-space: normal;
+        }
       }
     }
 
