@@ -36,7 +36,7 @@ class Modal extends React.Component {
         return (
             <div className={modalClasses}>
                 <header className="bar bar-nav">
-                    <a className="icon icon-close pull-right" onClick={this._closeModal.bind(this)}></a>
+                    <a className="icon icon-close pull-right clickable" onClick={this._closeModal.bind(this)}></a>
                     <h1 className="title">{this.state.title}</h1>
                 </header>
 
