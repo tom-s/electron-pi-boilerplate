@@ -1,5 +1,10 @@
-- régler pb de case avec wikipedia
-- régler pb affichage texte
+- faire afficher des conseils en cas d'inactivité
+- régler pb de casse avec wikipedia
+- mettre le micro en rouge quand on parle
+- faire parler avec option sound on/off
+- faire un chronometre
+- faire un timer
+- faire une map (s'inspirer de mart mirror)
 - faire l'intent finder pour les actions de base:
 > setter un timer qui dure X secondes
 > remind me to "" at

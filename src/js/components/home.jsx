@@ -10,6 +10,7 @@ import Response from './response.jsx'
 import SocketStatus from './socketStatus.jsx'
 import TabBar from './tabBar.jsx'
 import SidePage from './sidePage.jsx'
+import Modal from './modal.jsx'
 
 class Home extends React.Component {
     constructor(props) {
@@ -56,6 +57,9 @@ class Home extends React.Component {
 
                 {/* Footer */}
                 <TabBar/>
+
+                {/* Modal */}
+                <Modal/>
 
                 {
                 <div className="Socket-wrapper">
