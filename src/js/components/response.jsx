@@ -17,8 +17,7 @@ class Response extends React.Component {
     }
 
     componentDidMount() {
-        this.responseStream = new ResponseStream();
-        this.responseStream.subscribe((response) => {
+        ResponseStream.subscribe((response) => {
             if(response) {
                 this.setState({
                    response: response
@@ -28,7 +27,7 @@ class Response extends React.Component {
     }
 
     componentWillUnmount() {
-        this.responseStream.dispose();
+        ResponseStream.dispose();
     }
 
     render() {

@@ -2,7 +2,7 @@ import Rx from 'rx'
 import socket from '../utils/socket.js'
 
 /* This is a singleton because stream need to  be controlled by shared components -- todo: I DONT THINK THATS NECESSARY*/
-export default (function() {
+let SpeakStream = (() => {
     var speechToText = {};
 
     // Set recognition
@@ -50,12 +50,9 @@ export default (function() {
         speechToText.recognition.start();
     };
 
-    speechToText.stream = Rx.Observable.combineLatest(speechToText.active, speechToText.result, (active, result) => {
-        return {
-            active: active,
-            result: result
-        }
-    });
+    speechToText.stream = 
 
     return speechToText;
+    
 })();
+export default SpeakStream;

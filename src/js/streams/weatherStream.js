@@ -3,8 +3,10 @@ import request from 'superagent'
 
 require('superagent-jsonp')(request);
 
+// Stream
+let WeatherStream;
 
-export default class WeatherStream {
+export default WeatherStream {
     constructor() {
         /*
         return Bacon.once().merge(Bacon.interval(1800 * 1000)).flatMap(this._fetchWeather).map(weathers => {

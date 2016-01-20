@@ -15,19 +15,13 @@ class Modal extends React.Component {
     }
 
     componentDidMount() {
-        /*
-        this.speechToTextStream = SpeechToTextStream;
-
-        this.speechToTextStream.stream.subscribe((data) => {
-            var result = (data.result.final) ? data.result.final : data.result.temp;
-            this.setState({
-                result: result
-            });
-        });*/
+        ModalStream.subscribe((data) => {
+            console.log("modal ?", data);
+        });
     }
 
     componentWillUnmount() {
-        //this.speechToTextStream.stream.dispose();
+        ModalStream.dispose();
     }
 
     render() {

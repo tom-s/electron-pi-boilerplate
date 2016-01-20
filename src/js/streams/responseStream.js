@@ -9,24 +9,16 @@ import SpeechToTextStream from './speechToTextStream.js'
 import Time from './actions/time.js'
 import Wikipedia from './actions/wikipedia.js'
 
-export default class ResponseStream {
-    constructor() {
-        var speechStream = SpeechToTextStream.stream;
 
-        // just added the scan, check if it works
-        return speechStream.filter(this._filter).distinct((data) => { return data.result.final; })
-            .flatMapLatest(this._fetchResponse).flatMapLatest(this._handleResponse.bind(this)).map((res) => {
-                console.log("res", res);
-                return res;
-            }).publish().refCount();
-    }
+let ResponseStream = (() => {
+    let speechStream = SpeechToTextStream.stream;
 
-    _filter(data) {
+    function _filter(data) {
         var text = _.get(data, 'result.final');
         return !!text;
     }
 
-    _handleResponse(response) {
+    function _handleResponse(response) {
         var speech = _.get(response, 'body.result.speech');
         if(speech) {
             return  Rx.Observable.just(speech);
@@ -40,7 +32,7 @@ export default class ResponseStream {
         return null
     }
 
-    _handleAction(action, parameters) {
+    function _handleAction(action, parameters) {
         switch(action) {
             case 'clock.time':
                 return Rx.Observable.fromPromise(Time.getTimeByLocation(parameters.location));
@@ -50,7 +42,7 @@ export default class ResponseStream {
         }
     }
 
-    _fetchResponse(data) {
+    function _fetchResponse(data) {
         console.log("fethc response for data", data);
         var text = _.get(data, 'result.final');
         return Rx.Observable.fromPromise(
@@ -68,5 +60,14 @@ export default class ResponseStream {
         );
     }
 
-}
+    // Stream
+    // just added the scan, check if it works
+    return speechStream.filter(_filter).distinct((data) => { return data.result.final; })
+        .flatMapLatest(_fetchResponse).flatMapLatest(_handleResponse.bind(this)).map((res) => {
+            console.log("res", res);
+            return res;
+        }).publish().refCount();
+})();
+
+export default ResponseStream;
 

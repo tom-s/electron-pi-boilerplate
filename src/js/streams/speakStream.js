@@ -1,11 +1,13 @@
 import Rx from 'rx'
 import socket from '../utils/socket.js'
 
-export default class SpeakStream {
-    constructor() {
-        var speak = Rx.observable.fromEvent(socket, 'speak');
-        return Rx.observable.merge(speak.map((data) => {
-            return data.text;
-        })).startWith('zzzzzzzzzzzzzzz....');
-    }
-}
+let SpeakStream = (() => {
+	let speak = Rx.Observable.fromEvent(socket, 'speak');
+    
+	// Stream
+    return Rx.Observable.merge(speak.map((data) => {
+        return data.text;
+    })).startWith('zzzzzzzzzzzzzzz....');
+})();
+
+export default SpeakStream;
