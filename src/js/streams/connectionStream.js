@@ -1,12 +1,11 @@
 import Rx from 'rx'
 import socket from '../utils/socket.js'
 
-export default class ConnectionStream {
-    constructor() {
-        var connections =  Rx.Observable.fromEvent(socket, 'connect');
-        var disconnections =  Rx.Observable.fromEvent(socket, 'disconnect');
+// Source Streams
+let connections =  Rx.Observable.fromEvent(socket, 'connect');
+let disconnections =  Rx.Observable.fromEvent(socket, 'disconnect');
 
-        return Rx.Observable.merge(connections.map(true), disconnections.map(false)).startWith(false);
-    }
-}
+// Stream
+let ConnectionStream = Rx.Observable.merge(connections.map(true), disconnections.map(false)).startWith(false);
+export default ConnectionStream;
 

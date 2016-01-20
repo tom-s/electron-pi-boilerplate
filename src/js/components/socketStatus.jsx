@@ -14,9 +14,7 @@ class SocketStatus extends React.Component {
     }
 
     componentDidMount() {
-        this.connectionStream = new ConnectionStream();
-        console.log(this.connectionStream);
-        this.connectionStream.subscribe((connected) => {
+        ConnectionStream.subscribe((connected) => {
             console.log("connected ?", connected);
             this.setState({
                 connected: connected
@@ -25,7 +23,7 @@ class SocketStatus extends React.Component {
     }
 
     componentWillUnmount() {
-        this.connectionStream.dispose();
+        ConnectionStream.dispose();
     }
 
     render() {

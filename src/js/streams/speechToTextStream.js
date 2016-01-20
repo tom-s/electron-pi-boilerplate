@@ -1,7 +1,7 @@
 import Rx from 'rx'
 import socket from '../utils/socket.js'
 
-/* This is a singleton because stream need to  be controlled by shared components */
+/* This is a singleton because stream need to  be controlled by shared components -- todo: I DONT THINK THATS NECESSARY*/
 export default (function() {
     var speechToText = {};
 

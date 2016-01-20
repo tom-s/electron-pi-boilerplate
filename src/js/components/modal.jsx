@@ -2,6 +2,9 @@
 import React from 'react'
 import ClassNames from 'classnames'
 
+// Streams
+import ModalStream from '../streams/modalStream.js'
+
 class Modal extends React.Component {
     constructor(props) {
         super(props);
