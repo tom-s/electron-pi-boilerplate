@@ -15,9 +15,16 @@ class Modal extends React.Component {
     }
 
     componentDidMount() {
-        ModalStream.subscribe((data) => {
-            console.log("modal ?", data);
+        ModalStream.subscribe((active) => {
+            this.setState({
+                active: active
+            });
         });
+
+        window.setTimeout(() => {
+            console.log("modalStream", ModalStream);
+            ModalStream.onNext(true);
+        },2000);
     }
 
     componentWillUnmount() {

@@ -4,7 +4,7 @@ import socket from '../utils/socket.js'
 let ModalStream = (() => {
 
     // Stream
-    return new Rx.ReplaySubject(1).startWith(false);
+    return new Rx.BehaviorSubject(false);
 })();
 
 export default ModalStream;
