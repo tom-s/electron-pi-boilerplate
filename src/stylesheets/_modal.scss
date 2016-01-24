@@ -1,0 +1,10 @@
+.Modal {
+    top: 25%;
+    height: 75%;
+
+	.Messages {
+		height: 100%;
+		overflow-y: scroll;
+		padding: 50px;
+	}
+}

@@ -1,7 +1,8 @@
 TODO:
-- faire le décompte de messages
-- faire le systeme qui loade le contenu de la modale
-> inject un composant !
+- faire le click sur messages qui ouvre la modale
+- mettre en page les messages
+- gérer tous les types de messages
+- filter les messages inutiles
 
 - faire afficher des conseils en cas d'inactivité
 - régler pb de casse avec wikipedia

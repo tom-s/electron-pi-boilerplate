@@ -10,7 +10,10 @@ let ModalStream = (() => {
     })).startWith(false); */
 
     // Stream
-    return new Rx.BehaviorSubject(false);  // todo: check what this is exactly
+    return new Rx.BehaviorSubject({
+    	active: true,
+    	type: 'MESSAGES'
+    });  // todo: check what this is exactly
 })();
 
 export default ModalStream;

@@ -5,19 +5,23 @@ import ClassNames from 'classnames'
 // Streams
 import ModalStream from '../streams/modalStream.js'
 
+// Components
+import ModalMessages from './modal/messages.jsx';
+
 class Modal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: true,
-            title: 'Title here'
+            active: false,
+            type: null
         };
     }
 
     componentDidMount() {
-        ModalStream.subscribe((active) => {
+        ModalStream.subscribe((data) => {
             this.setState({
-                active: active
+                active: data.active,
+                type: data.type
             });
         });
 
@@ -38,15 +42,27 @@ class Modal extends React.Component {
             modal: true,
             active: (this.state.active)
         });
+
+        var content = null;
+        switch(this.state.type) {
+            case 'MESSAGES': 
+                content = (
+                    <ModalMessages />
+                );
+                break;
+            default : content = (
+                <div> Loading ...</div>
+                );
+        };
         return (
             <div className={modalClasses}>
                 <header className="bar bar-nav">
                     <a className="icon icon-close pull-right clickable" onClick={this._closeModal.bind(this)}></a>
-                    <h1 className="title">{this.state.title}</h1>
+                    <h1 className="title">{this.state.type}</h1>
                 </header>
 
                 <div className="content">
-                    <p className="content-padded">The contents of my modal go here. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
+                    {content}
                 </div>
             </div>
         );
