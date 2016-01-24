@@ -32,6 +32,7 @@
 					height: 30px;
 					overflow: hidden;
 					border-radius: 50%;
+					margin-left: 10px;
 
 					.UserAvatarImg {
 						max-width: 100%;
@@ -42,6 +43,14 @@
 					color: #7d7d7d;
     				font-size: 13px;
     				font-weight: bold;
+				}
+			}
+
+			.Message {
+				.ImageWrapper{
+					.Image {
+						max-height: 500px;
+					}
 				}
 			}
 		}

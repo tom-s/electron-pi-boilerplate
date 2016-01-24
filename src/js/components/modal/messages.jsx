@@ -2,6 +2,9 @@
 import React from 'react'
 import _ from 'lodash'
 
+// Components
+import GoogleMap from 'google-map-react'
+
 // Streams
 import MessagesStream from '../../streams/messageStream.js'
 
@@ -33,7 +36,42 @@ class Messages extends React.Component {
         MessagesStream.dispose();
     }
 
+    displayMessage(msg) {
+        let subject = _.get(msg, 'data.subject');
+        let text = _.get(subject, 'text');
+        let imgUrl = _.get(subject, 'picture_url');
+        let location = _.get(subject, 'location');
+
+        if(!subject) {
+            console.log("msg shoud be filtered !", msg);
+            return null;
+        }
+        let image = (imgUrl) ? (
+            <div className="ImageWrapper">
+                <img src={imgUrl} className="Image"/>
+            </div>
+        ) : null;
+        console.log("location ? ", location);
+        let map = (_.get(location, 'lat')) ? (
+            <div className="LocationWrapper">
+                <GoogleMap
+                    defaultCenter={{lat: parseFloat(location.lat), lng: parseFloat(location.lng)}}
+                    defaultZoom={9}>
+                </GoogleMap>
+            </div>
+        ) : null;
+
+        return (
+            <div className="Message" key={msg.id}>
+                {text}
+                {image}
+                {map}
+            </div>
+        );
+    }
+
     displayUserMessages(msgs) {
+        console.log("display messages for user", msgs);
         let firstMessage = _.first(msgs);
         let subject = _.get(firstMessage, 'data.subject');
 
@@ -48,17 +86,7 @@ class Messages extends React.Component {
             );
         })();
         let messages = _.chain(msgs).map((msg) => {
-            let subject = _.get(msg, 'data.subject');
-            let text = _.get(subject, 'text');
-            if(!subject) {
-                console.log("msg shoud be filtered !", msg);
-                return null;
-            }
-            return (
-                <div className="Message" key={msg.id}>
-                    {text}
-                </div>
-            );
+            return this.displayMessage(msg);
         }).compact().value();
         return (
             <div className={"UserGroup clearfix " + subject.name.toLowerCase()} key={'User' + firstMessage.id}>

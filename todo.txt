@@ -1,9 +1,11 @@
 TODO:
 - faire le click sur messages qui ouvre la modale
-- mettre en page les messages
-- gérer tous les types de messages
-- filter les messages inutiles
+- ajouter l'heure sur les messages
+- gérer tous les types de messages:
+> faire fonctionner la location
+> ajouter les évènements
 
+- filter les messages inutiles
 - faire afficher des conseils en cas d'inactivité
 - régler pb de casse avec wikipedia
 - mettre le micro en rouge quand on parle

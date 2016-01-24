@@ -25,6 +25,7 @@
     "async": "^1.4.2",
     "classnames": "^2.2.0",
     "firebase": "^2.3.2",
+    "google-map-react": "^0.10.3",
     "imports-loader": "^0.6.5",
     "install": "^0.4.1",
     "json-loader": "^0.5.4",
