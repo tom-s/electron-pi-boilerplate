@@ -34,13 +34,16 @@ class Messages extends React.Component {
     }
 
     displayUserMessages(msgs) {
-        var firstMessage = _.first(msgs);
+        let firstMessage = _.first(msgs);
+        let subject = _.get(firstMessage, 'data.subject');
+
         let user = (() => {
-            let subject = _.get(firstMessage, 'data.subject');
             return (
-                <div className="User"> 
+                <div className="User">
+                    <div className="UserAvatar">
+                        <img className="UserAvatarImg" src={subject.avatar_url}/>
+                    </div> 
                     <div className="UserName">{subject.name}</div>
-                    <div className="UserAvatar"><img src={subject.avatar_url}/></div> 
                 </div>
             );
         })();
@@ -58,7 +61,7 @@ class Messages extends React.Component {
             );
         }).compact().value();
         return (
-            <div className="UserGroup" key={'User' + firstMessage.id}>
+            <div className={"UserGroup clearfix " + subject.name.toLowerCase()} key={'User' + firstMessage.id}>
                 {user}
                 <div className="Group"> {messages}</div>
             </div>

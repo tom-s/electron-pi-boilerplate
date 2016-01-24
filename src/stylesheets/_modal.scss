@@ -1,10 +1,48 @@
-.Modal {
+.Modal.modal {
     top: 25%;
     height: 75%;
 
 	.Messages {
 		height: 100%;
 		overflow-y: scroll;
-		padding: 50px;
+
+		.UserGroup {
+			padding: 20px;
+
+			&.thomas {
+				background-color: #e5f1f6;
+			}
+			&.hester {
+				background-color: #F2F6E6;
+			}
+			&.wendy {
+				background-color: #FFFFFF;
+			}
+
+			.Group {
+				float: left;
+			}
+			.User {
+				float: left;
+    			width: 100px;
+
+				.UserAvatar {
+					width: 30px;
+					height: 30px;
+					overflow: hidden;
+					border-radius: 50%;
+
+					.UserAvatarImg {
+						max-width: 100%;
+					}
+				}
+
+				.UserName {
+					color: #7d7d7d;
+    				font-size: 13px;
+    				font-weight: bold;
+				}
+			}
+		}
 	}
 }
