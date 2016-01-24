@@ -21,10 +21,11 @@ class Modal extends React.Component {
             });
         });
 
+        /*
         window.setTimeout(() => {
             console.log("modalStream", ModalStream);
             ModalStream.onNext(true);
-        },2000);
+        },2000);*/
     }
 
     componentWillUnmount() {

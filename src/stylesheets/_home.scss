@@ -91,5 +91,11 @@
       bottom: 20px;
       right: 70px;
     }
+
+    .Bar {
+      .badge {
+        display: inline;
+      }
+    }
   }
 }

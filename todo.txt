@@ -1,10 +1,15 @@
+TODO:
+- faire le décompte de messages
+- faire le systeme qui loade le contenu de la modale
+> inject un composant !
+
 - faire afficher des conseils en cas d'inactivité
 - régler pb de casse avec wikipedia
 - mettre le micro en rouge quand on parle
 - faire parler avec option sound on/off
 - faire un chronometre
 - faire un timer
-- faire une map (s'inspirer de mart mirror)
+- faire une map qui s'affiche dans la popup
 - faire l'intent finder pour les actions de base:
 > setter un timer qui dure X secondes
 > remind me to "" at

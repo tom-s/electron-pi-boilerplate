@@ -14,8 +14,7 @@ class Clock extends React.Component {
     }
 
     componentDidMount() {
-        this.timerStream = new TimerStream();
-        this.timerStream.subscribe((date) => {
+        TimerStream.subscribe((date) => {
             this.setState({
                 date: date
             });
@@ -25,7 +24,7 @@ class Clock extends React.Component {
     }
 
     componentWillUnmount() {
-        this.timerStream.dispose();
+        TimerStream.dispose();
     }
 
     render() {

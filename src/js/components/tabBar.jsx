@@ -1,58 +1,40 @@
-
+ 
 import React from 'react'
 import classnames from 'classnames'
+
+// Streams
+import MessageStream from '../streams/messageStream.js'
 
 class TabBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            count: 0
+        };
     }
 
     componentDidMount() {
-        /*
-        this.responseStream = new ResponseStream();
-        this.responseStream.onValue((data) => {
-            console.log("data.result", data.result);
-            if(data.result.speech) {
-                this.setState({
-                    response: data.result.speech
-                });
-            }
-        });*/
+        MessageStream.subscribe((data) => {
+            console.log("count", data);
+            this.setState({
+                count: data.count || 0
+            });
+        });
+
     }
 
     componentWillUnmount() {
-        //this.responseStream();
+        MessageStream.dispose();
     }
 
     render() {
-        var tools = [
-            {
-                icon: 'icon-person',
-                label: 'Profile'
-            }
-        ]; // temp
-
-        var tabs = _.map(tools, function(tool, i) {
-            var classes = classnames({
-                'tab-item': true,
-            });
-            return (
-                <a className={classes} href="#" key={'tab' + i}>
-                    <span className="icon icon-person"></span>
-                    <span className="tab-label">{tool.label}</span>
-                </a>
-            )
-        });
-
         return (
-            <nav className="bar bar-tab">
+            <header className="Bar bar bar-tab">
                 <a className="tab-item active" href="#">
-                    <span className="icon icon-home"></span>
-                    <span className="tab-label">Home</span>
+                    <span className="icon icon-compose"></span>
+                    <span className="badge">{this.state.count}</span>
                 </a>
-                {tabs}
-            </nav>
+            </header>
         );
     }
 
