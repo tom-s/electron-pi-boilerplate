@@ -11,7 +11,7 @@ let ModalStream = (() => {
 
     // Stream
     return new Rx.BehaviorSubject({
-    	active: true,
+    	active: false,
     	type: 'MESSAGES'
     });
 })();

@@ -4,6 +4,10 @@ TODO:
 - gérer tous les types de messages:
 > faire fonctionner la location
 > ajouter les évènements
+- plugger à garmin
+https://newspaint.wordpress.com/2015/09/06/how-to-get-cookies-from-node-js-http-response/
+https://github.com/cbetz/node-garmin-connect/blob/master/node-garmin-connect.js
+https://connect.garmin.com/modern/proxy/userstats-service/activities/daily/Hesterbester?fromDate=2016-01-23&untilDate=2016-01-29&metricId=18&grpParentActType=true&_=1454091570145
 
 - filter les messages inutiles
 - faire afficher des conseils en cas d'inactivité
