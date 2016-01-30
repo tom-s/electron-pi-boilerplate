@@ -1,7 +1,7 @@
 TODO:
 - ajouter les différents types d'action
 - faire que la popup de messages s'ouvre quand je checke mes messages
-
+- ajouter l'icone pour la connexion au socket (icon raspberry)
 - ajouter l'heure sur les messages
 - gérer tous les types de messages:
 > faire fonctionner la location

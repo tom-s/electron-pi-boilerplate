@@ -1,5 +1,6 @@
 import React from 'react'
 import Socket from '../utils/socket.js'
+import ClassNames from 'classnames'
 
 // Components
 import Clock from './clock.jsx'
@@ -12,27 +13,47 @@ import TabBar from './tabBar.jsx'
 import SidePage from './sidePage.jsx'
 import Modal from './modal.jsx'
 
+// Streams
+import VolumeStream from '../streams/volumeStream.js'
+    
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sidePageType: null
+            sidePageType: null,
+            soundOn: true
         }
     }
 
     componentDidMount() {
-        this.setState({
-            sidePageType: 'timer'
+        VolumeStream.subscribe((on) => {
+            this.setState({
+                soundOn: on
+            });
         });
     }
 
+    componentWillUnmount() {
+        VolumeStream.dispose();
+    }
+
     render() {
+
+        // Icons
+        var volumeClasses = ClassNames({
+            'icon': true,
+            'icon-sound': this.state.soundOn,
+            'icon-sound4': !this.state.soundOn,
+            'clickable': true
+        });
+
         return (
             <div className="Home">
                 <header className="bar bar-nav">
                     <h1 className="title">Thomster</h1>
-                    <div className="Clock-wrapper">
-                        <Clock/>
+                    <Clock/>
+                    <div className="Icons-wrapper pull-right">
+                         <span className={volumeClasses} onClick={this._toggleSound.bind(this)}></span>
                     </div>
                 </header>
 
@@ -68,6 +89,10 @@ class Home extends React.Component {
                 }
             </div>
         );
+    }
+
+    _toggleSound() {
+        VolumeStream.onNext(!this.state.soundOn);
     }
 };
 

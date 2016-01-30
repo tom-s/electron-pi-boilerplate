@@ -35,7 +35,7 @@ class Clock extends React.Component {
         var minutes = (this.state.date) ? ('0'  + this.state.date.getMinutes()).slice(-2) : null;
 
         return (
-            <div className="Clock text-center">
+            <div className="Clock text-center pull-right">
                 <span className="Hours">{hours}:</span>
                 <span className="Minutes">{minutes}</span>
             </div>

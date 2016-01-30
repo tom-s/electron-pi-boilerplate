@@ -1,10 +1,11 @@
-
+import _ from 'lodash';
 import React from 'react'
 import ClassNames from 'classnames'
 import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg'
 import SnapAnimator from '../utils/snapAnimator.js'
 import Socket from '../utils/socket.js'
 import Speech from '../utils/speech.js'
+import ActionHandler from '../utils/actionHandler.js';
 
 // Streams
 import ResponseStream from '../streams/responseStream.js'
@@ -18,12 +19,22 @@ class Response extends React.Component {
     }
 
     componentDidMount() {
-        ResponseStream.subscribe((response) => {
+        ResponseStream.subscribe((data) => {
+            var response = _.get(data, '.response');
+            var action = _.get(data, '.action');
+            var parameters = _.get(data, '.parameters');
+
+            // Handle text responses
             if(response) {
                 this.setState({
                    response: response
                 }, this._resize);
                 Speech.speak(response); // talk
+            }
+
+            // Handle actions
+            if(action) {
+                ActionHandler.execute(action, parameters);
             }
         });
     }

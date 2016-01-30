@@ -6,9 +6,17 @@
     position: relative;
     height: 100%;
 
-    .Clock-wrapper {
+    .Clock  {
+      padding: 10px;
+    }
+
+    .Icons-wrapper {
       padding: 10px;
       text-align: right;
+
+      .icon {
+        padding: 0;
+      }
     }
 
     .Content {

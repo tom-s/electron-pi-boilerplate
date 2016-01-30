@@ -21,33 +21,34 @@ let ResponseStream = (() => {
     function _handleResponse(response) {
         var speech = _.get(response, 'body.result.speech');
         if(speech) {
-            return  Rx.Observable.just(speech);
+            return  Rx.Observable.just({
+                response: speech
+            });
         } else {
             var action = _.get(response, 'body.result.action');
             var parameters = _.get(response, 'body.result.parameters');
             if(action) {
-                return this._handleAction(action, parameters);
+                return _handleAction(action, parameters);
             }
         }
         return null
     }
 
     function _handleAction(action, parameters) {
+        console.log("_handleAction", action, parameters);
         switch(action) {
+            /* Text reponses */
             case 'clock.time':
-                return Rx.Observable.fromPromise(Time.getTimeByLocation(parameters.location));
+                return Rx.Observable.fromPromise(Time.getTimeByLocation(parameters.location)).map((response) => {return {response: response, action: null};});
             case 'web.search':
-                return Rx.Observable.fromPromise(Wikipedia.search(parameters.q));
-            // Messages
-            case 'messages.check': //unread: true
-            case 'messages.read':
-            // Reminders
-            case 'notifications.add': 
-            // Cancelling
-            case 'smalltalk.confirmation': //simpliefied: cancel
-
-
-            default: return Rx.Observable.just(null);
+                return Rx.Observable.fromPromise(Wikipedia.search(parameters.q)).map((response) => {return {response: response, action: null};});
+            /* All other actions */
+            default: 
+                return Rx.Observable.just({
+                    response: null,
+                    action: action, 
+                    parameters: parameters
+                });
         }
     }
 
@@ -71,10 +72,7 @@ let ResponseStream = (() => {
 
     // Stream
     return speechStream.filter(_filter).distinct((data) => { return data.result.final; })
-        .flatMapLatest(_fetchResponse).flatMapLatest(_handleResponse.bind(this)).map((res) => {
-            console.log("res", res);
-            return res;
-        }).publish().refCount();
+        .flatMapLatest(_fetchResponse).flatMapLatest(_handleResponse); //.publish().refCount();
 })();
 
 export default ResponseStream;
