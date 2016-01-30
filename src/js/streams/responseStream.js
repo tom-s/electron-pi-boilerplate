@@ -38,6 +38,15 @@ let ResponseStream = (() => {
                 return Rx.Observable.fromPromise(Time.getTimeByLocation(parameters.location));
             case 'web.search':
                 return Rx.Observable.fromPromise(Wikipedia.search(parameters.q));
+            // Messages
+            case 'messages.check': //unread: true
+            case 'messages.read':
+            // Reminders
+            case 'notifications.add': 
+            // Cancelling
+            case 'smalltalk.confirmation': //simpliefied: cancel
+
+
             default: return Rx.Observable.just(null);
         }
     }
@@ -61,7 +70,6 @@ let ResponseStream = (() => {
     }
 
     // Stream
-    // just added the scan, check if it works
     return speechStream.filter(_filter).distinct((data) => { return data.result.final; })
         .flatMapLatest(_fetchResponse).flatMapLatest(_handleResponse.bind(this)).map((res) => {
             console.log("res", res);
