@@ -1,6 +1,7 @@
 TODO:
 - faire que la popup de messages s'ouvre quand je checke mes messages
 - ajouter l'heure sur les messages
+- remettre le compteur de messages à zero quand 
 - gérer tous les types de messages:
 > faire fonctionner la location
 > ajouter les évènements
@@ -18,9 +19,7 @@ https://newspaint.wordpress.com/2015/09/06/how-to-get-cookies-from-node-js-http-
 https://github.com/cbetz/node-garmin-connect/blob/master/node-garmin-connect.js
 https://connect.garmin.com/modern/proxy/userstats-service/activities/daily/Hesterbester?fromDate=2016-01-23&untilDate=2016-01-29&metricId=18&grpParentActType=true&_=1454091570145
 
-- faire parler quand j'obtiens la réponse
-- faire que l'appli écoute quand je claque dans les mains
-
+- faire que l'appli écoute quand je claque dans les mains ?
 
 - améliorer time.js pour qu'il utilise les streams
 - utiliser les streams pour mes appels ajax

@@ -3,7 +3,6 @@ import Socket from '../utils/socket.js'
 
 // Components
 import Confirmation from './confirmation.jsx'
-import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
 import Query from './query.jsx'
 import Response from './response.jsx'
