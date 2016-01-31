@@ -13,7 +13,7 @@ class Modal extends React.Component {
         super(props);
         this.state = {
             active: false,
-            type: null
+            type: 'MESSAGES'
         };
     }
 
