@@ -13,6 +13,7 @@ import ResponseStream from '../streams/responseStream.js'
 class Response extends React.Component {
     constructor(props) {
         super(props);
+        this.timeout = null;
         this.state = {
             response: ''
         }
@@ -30,6 +31,12 @@ class Response extends React.Component {
                    response: response
                 }, this._resize);
                 Speech.speak(response); // talk
+                window.clearTimeout(this.timeout);
+                this.timeout = window.setTimeout(() => {
+                    this.setState({
+                        response: null
+                    });
+                }, 10000);
             }
 
             // Handle actions

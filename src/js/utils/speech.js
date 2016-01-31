@@ -10,7 +10,6 @@ let Speech = (() => {
 		utterance.pitch = 1; //0 to 2
 		utterance.text = msg;
 		utterance.lang = 'en-UK';
-		console.log('utterance', utterance);
 		window.speechSynthesis.speak(utterance);
 	}
 

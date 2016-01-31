@@ -11,9 +11,11 @@ let ActionHandler = (() => {
 			 // Sound
             case 'volume.on':
             	VolumeStream.onNext(true);
+                  ConfirmationStream.onNext(true);
             	break;
             case 'volume.off':
             	VolumeStream.onNext(false);
+                  ConfirmationStream.onNext(true);
             	break;
             // Messages
             case 'messages.check': //unread: true
@@ -23,7 +25,6 @@ let ActionHandler = (() => {
             // Cancelling
             case 'smalltalk.confirmation':
             default: 
-                  console.log("confirmation stream");
                   ConfirmationStream.onNext(false);
 		}
 	}

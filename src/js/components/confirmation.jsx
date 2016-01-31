@@ -1,5 +1,6 @@
 // Tools
 import React from 'react'
+import ClassNames from 'classnames'
 import _ from 'lodash'
 
 // Streams
@@ -16,7 +17,6 @@ class Confirmation extends React.Component {
 
     componentDidMount() {
         ConfirmationStream.subscribe((confirm) => {
-            console.log("confirm ?", confirm);
             this.setState({
                 confirm: confirm
             });
@@ -36,8 +36,14 @@ class Confirmation extends React.Component {
     render() {
         if(this.state.confirm === null) return null;
 
+        var confirmationClasses = ClassNames({
+            'Confirmation': true,
+            'Confirmation-success': this.state.confirm === true,
+            'Confirmation-error': this.state.confirm === false
+        });
+
         return (
-            <div className="Confirmation Confirmation-success">
+            <div className={confirmationClasses}>
               <div className="Circle"></div>
               <div className="Circle"></div>    
             </div> 
