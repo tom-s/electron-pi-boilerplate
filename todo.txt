@@ -4,11 +4,9 @@ TODO:
 - gérer tous les types de messages:
 > faire fonctionner la location
 > ajouter les évènements
-
-- faire afficher des conseils en cas d'inactivité
+- faire une page qui liste les inéractions
 - régler pb de casse avec wikipedia
-- mettre le micro en rouge quand on parle
-- faire parler avec option sound on/off
+- mettre le micro en couleur quand on parle
 - faire un chronometre
 - faire un timer
 - faire une map qui s'affiche dans la popup
