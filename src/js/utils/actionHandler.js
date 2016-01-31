@@ -10,31 +10,38 @@ let ActionHandler = (() => {
 		console.log("execute action", action, parameters);
 		switch(action) {
 			 // Sound
-            case 'volume.on':
-            	VolumeStream.onNext(true);
-                  ConfirmationStream.onNext(true);
-            	break;
-            case 'volume.off':
-            	VolumeStream.onNext(false);
-                  ConfirmationStream.onNext(true);
-            	break;
-            case 'menu.main':
-                  ModalStream.onNext({
-                        type: null,
-                        active: false
-                  });
-                  ConfirmationStream.onNext(true);
-                  break;
-            // Messages
-            case 'messages.check': //unread: true
-            case 'messages.read':
-            // Reminders+
-            case 'notifications.add': 
-            // Cancelling
-            case 'smalltalk.confirmation':
-            default: 
-                  ConfirmationStream.onNext(false);
-		}
+                  case 'volume.on':
+                  	VolumeStream.onNext(true);
+                        ConfirmationStream.onNext(true);
+                  	break;
+                  case 'volume.off':
+                  	VolumeStream.onNext(false);
+                        ConfirmationStream.onNext(true);
+                  	break;
+                  case 'menu.main':
+                        ModalStream.onNext({
+                              type: null,
+                              active: false
+                        });
+                        ConfirmationStream.onNext(true);
+                        break;
+                  // Messages
+                  case 'messages.show':
+                  case 'messages.check': //unread: true
+                  case 'messages.read':
+                        ModalStream.onNext({
+                              type: 'MESSAGES',
+                              active: true
+                        });
+                        ConfirmationStream.onNext(true);
+                        break;
+                  // Reminders+
+                  case 'notifications.add': 
+                  // Cancelling
+                  case 'smalltalk.confirmation':
+                  default: 
+                        ConfirmationStream.onNext(false);
+      	}
 	}
 
 	return {
