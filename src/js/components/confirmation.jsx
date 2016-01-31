@@ -25,7 +25,7 @@ class Confirmation extends React.Component {
                 this.setState({
                     confirm: null
                 });
-            }, 3000);
+            }, 10000);
         });
     }
 

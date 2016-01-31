@@ -7,10 +7,12 @@ import Socket from '../utils/socket.js'
 
 // Streams
 import SpeechToTextStream from '../streams/speechToTextStream.js'
+import ConfirmationStream from '../streams/confirmationStream.js'
 
 class Query extends React.Component {
     constructor(props) {
         super(props);
+        this.timeout = null;
         this.state = {
             result: ''
         }
@@ -24,11 +26,27 @@ class Query extends React.Component {
             this.setState({
                 result: result
             });
+            window.clearTimeout(this.timeout);
+            this.timeout = window.setTimeout(() => {
+                this.setState({
+                    result: null
+                });
+            }, 5000);
+        });
+
+        ConfirmationStream.subscribe((confirm) => {
+            if(confirm !== null) {
+                window.clearTimeout(this.timeout);
+                this.setState({
+                    result: null
+                });
+            }
         });
     }
 
     componentWillUnmount() {
         this.speechToTextStream.stream.dispose();
+        ConfirmationStream.dispose();
     }
 
     render() {
