@@ -2,6 +2,7 @@ import React from 'react'
 import Socket from '../utils/socket.js'
 
 // Components
+import Confirmation from './confirmation.jsx'
 import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
 import Query from './query.jsx'
@@ -34,7 +35,7 @@ class Home extends React.Component {
         return (
             <div className="Home">
                 {/* Header */}
-                <TopBar/>
+                <TopBar />
 
                 <div className="Content clearfix slider">
                     <div className="slide-group">
@@ -56,8 +57,11 @@ class Home extends React.Component {
                 </div>
 
                 {/* Footer */}
-                <TabBar/>
+                <TabBar />
 
+                {/* Confirmation ripple */}
+                <Confirmation />
+                
                 {/* Modal */}
                 <Modal/>
 

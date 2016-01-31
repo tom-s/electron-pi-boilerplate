@@ -1,13 +1,10 @@
 TODO:
-- ajouter les différents types d'action
 - faire que la popup de messages s'ouvre quand je checke mes messages
-- ajouter l'icone pour la connexion au socket (icon raspberry)
 - ajouter l'heure sur les messages
 - gérer tous les types de messages:
 > faire fonctionner la location
 > ajouter les évènements
 
-- filter les messages inutiles
 - faire afficher des conseils en cas d'inactivité
 - régler pb de casse avec wikipedia
 - mettre le micro en rouge quand on parle

@@ -31,7 +31,6 @@ class TopBar extends React.Component {
             });
         });
         ConnectionStream.subscribe((connected) => {
-            console.log("connc=ected ? ", connected);
             this.setState({
                 connected: connected
             });
