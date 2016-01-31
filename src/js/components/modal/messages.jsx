@@ -51,7 +51,7 @@ class Messages extends React.Component {
                 <img src={imgUrl} className="Image"/>
             </div>
         ) : null;
-        console.log("location ? ", location);
+
         let map = (_.get(location, 'lat')) ? (
             <div className="LocationWrapper">
                 <GoogleMap

@@ -1,16 +1,14 @@
 import React from 'react'
 import Socket from '../utils/socket.js'
-import ClassNames from 'classnames'
 
 // Components
-import Clock from './clock.jsx'
 import DynamicText from './dynamicText.jsx'
 import Microphone from './microphone.jsx'
 import Query from './query.jsx'
 import Response from './response.jsx'
-import SocketStatus from './socketStatus.jsx'
 import TabBar from './tabBar.jsx'
 import SidePage from './sidePage.jsx'
+import TopBar from './topBar.jsx'
 import Modal from './modal.jsx'
 
 // Streams
@@ -38,24 +36,10 @@ class Home extends React.Component {
     }
 
     render() {
-
-        // Icons
-        var volumeClasses = ClassNames({
-            'icon': true,
-            'icon-sound': this.state.soundOn,
-            'icon-sound4': !this.state.soundOn,
-            'clickable': true
-        });
-
         return (
             <div className="Home">
-                <header className="bar bar-nav">
-                    <h1 className="title">Thomster</h1>
-                    <Clock/>
-                    <div className="Icons-wrapper pull-right">
-                         <span className={volumeClasses} onClick={this._toggleSound.bind(this)}></span>
-                    </div>
-                </header>
+                {/* Header */}
+                <TopBar/>
 
                 <div className="Content clearfix slider">
                     <div className="slide-group">
@@ -82,17 +66,8 @@ class Home extends React.Component {
                 {/* Modal */}
                 <Modal/>
 
-                {
-                <div className="Socket-wrapper">
-                    <SocketStatus />
-                </div>
-                }
             </div>
         );
-    }
-
-    _toggleSound() {
-        VolumeStream.onNext(!this.state.soundOn);
     }
 };
 

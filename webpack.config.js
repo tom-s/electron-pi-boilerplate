@@ -32,7 +32,7 @@ var config = {
             },
             {
                 test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|svg)$/,
-                loader: 'url-loader?limit=100000'
+                loader: 'url-loader?limit=100000',
             },
             {
                 include: /\.json$/, loaders: ["json-loader"],
