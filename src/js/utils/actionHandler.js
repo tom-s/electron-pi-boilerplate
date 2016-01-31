@@ -1,3 +1,5 @@
+// Streams
+import ConfirmationStream from '../streams/confirmationStream.js';
 import VolumeStream from '../streams/volumeStream.js';
 
 let ActionHandler = (() => {
@@ -20,6 +22,9 @@ let ActionHandler = (() => {
             case 'notifications.add': 
             // Cancelling
             case 'smalltalk.confirmation':
+            default: 
+                  console.log("confirmation stream");
+                  ConfirmationStream.onNext(false);
 		}
 	}
 

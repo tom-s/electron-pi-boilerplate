@@ -15,7 +15,8 @@ let ResponseStream = (() => {
 
     function _filter(data) {
         var text = _.get(data, 'result.final');
-        return !!text;
+        var active = _.get(data, 'active');
+        return !!text && !active;
     }
 
     function _handleResponse(response) {
@@ -35,7 +36,6 @@ let ResponseStream = (() => {
     }
 
     function _handleAction(action, parameters) {
-        console.log("_handleAction", action, parameters);
         switch(action) {
             /* Text reponses */
             case 'clock.time':
@@ -71,8 +71,8 @@ let ResponseStream = (() => {
     }
 
     // Stream
-    return speechStream.filter(_filter).distinct((data) => { return data.result.final; })
-        .flatMapLatest(_fetchResponse).flatMapLatest(_handleResponse); //.publish().refCount();
+    return speechStream.filter(_filter).flatMapLatest(_fetchResponse).flatMapLatest(_handleResponse);
+
 })();
 
 export default ResponseStream;
