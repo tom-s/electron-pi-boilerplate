@@ -6,6 +6,7 @@ import ClassNames from 'classnames'
 import Clock from './clock.jsx'
 
 // Streams
+import VolumeStream from '../streams/volumeStream.js'
 import MessageStream from '../streams/messageStream.js'
 import ModalStream from '../streams/modalStream.js'
 import ConnectionStream from '../streams/connectionStream.js'
@@ -18,7 +19,8 @@ class TopBar extends React.Component {
         super(props);
         this.state = {
             count: 0,
-            connected: false
+            connected: false,
+            soundOn: true
         };
     }
 
@@ -34,11 +36,17 @@ class TopBar extends React.Component {
                 connected: connected
             });
         });
+         VolumeStream.subscribe((on) => {
+            this.setState({
+                soundOn: on
+            });
+        });
     }
 
     componentWillUnmount() {
         MessageStream.dispose();
         ConnectionStream.dispose();
+        VolumeStream.dispose();
     }
 
     render() {

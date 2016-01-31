@@ -18,21 +18,16 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sidePageType: null,
-            soundOn: true
+            sidePageType: null
         }
     }
 
     componentDidMount() {
-        VolumeStream.subscribe((on) => {
-            this.setState({
-                soundOn: on
-            });
-        });
+       
     }
 
     componentWillUnmount() {
-        VolumeStream.dispose();
+
     }
 
     render() {
