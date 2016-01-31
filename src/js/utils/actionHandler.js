@@ -1,6 +1,7 @@
 // Streams
 import ConfirmationStream from '../streams/confirmationStream.js';
 import VolumeStream from '../streams/volumeStream.js';
+import ModalStream from '../streams/modalStream.js';
 
 let ActionHandler = (() => {
 	console.log("action handler");
@@ -17,6 +18,13 @@ let ActionHandler = (() => {
             	VolumeStream.onNext(false);
                   ConfirmationStream.onNext(true);
             	break;
+            case 'menu.main':
+                  ModalStream.onNext({
+                        type: null,
+                        active: false
+                  });
+                  ConfirmationStream.onNext(true);
+                  break;
             // Messages
             case 'messages.check': //unread: true
             case 'messages.read':
